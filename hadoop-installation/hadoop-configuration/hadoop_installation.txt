@@ -1,0 +1,55 @@
+Unpack the downloaded Hadoop distribution. In the distribution, edit the file etc/hadoop/hadoop-env.sh to define some parameters as follows:
+
+  # set to the root of your Java installation
+  export JAVA_HOME=/usr/java/latest
+
+  # Assuming your installation directory is /usr/local/hadoop
+  export HADOOP_PREFIX=/usr/local/hadoop
+
+Try the following command:
+
+  $ bin/hadoop
+
+
+Refer configuration files in this dir to configure your hadoop and yarn
+  
+Format the filesystem:
+
+  $ bin/hdfs namenode -format
+
+Start NameNode daemon and DataNode daemon:
+
+  $ sbin/start-dfs.sh
+
+The hadoop daemon log output is written to the $HADOOP_LOG_DIR directory (defaults to $HADOOP_HOME/logs).
+Browse the web interface for the NameNode; by default it is available at:
+
+    NameNode - http://localhost:50070/
+
+Make the HDFS directories required to execute MapReduce jobs:
+
+  $ bin/hdfs dfs -mkdir /user
+  $ bin/hdfs dfs -mkdir /user/<username>
+
+Copy the input files into the distributed filesystem:
+
+  $ bin/hdfs dfs -put etc/hadoop input
+
+Run some of the examples provided:
+
+  $ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar grep input output 'dfs[a-z.]+'
+
+Examine the output files:
+
+Copy the output files from the distributed filesystem to the local filesystem and examine them:
+
+  $ bin/hdfs dfs -get output output
+  $ cat output/*  
+  
+To start yarn
+  $$HADOOP_HOME/sbin/start-yarn.sh
+  
+  
+To stop dfs and yarn
+  $$HADOOP_HOME/sbin/stop-dfs.sh
+  $$HADOOP_HOME/sbin/stop-yarn.sh

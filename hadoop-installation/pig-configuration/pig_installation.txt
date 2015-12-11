@@ -1,0 +1,5 @@
+$sudo tar -xvf pig-0.15.0.tar.gz -C /usr/local
+$sudo mv /usr/local/pig-0.15.0 /usr/local/pig
+$sudo chown aditya:aditya -R /usr/local/pig
+
+refer configuration files to setup hbase for standalone and pseudo distributed mode

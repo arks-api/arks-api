@@ -1,0 +1,70 @@
+Steps
+$sudo tar -xvf apache-hive-1.2.1-bin.tar.gz -C /usr/local/
+$sudo mv /usr/local/apache-hive-1.2.1-bin /usr/local/sqoop
+$sudo chown aditya:aditya -R /usr/local/hive
+
+
+Error 1
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-1.2.1.jar!/hive-log4j.properties
+Exception in thread "main" java.lang.RuntimeException: java.net.ConnectException: Call From aditya-ubuntu/127.0.1.1 to localhost:9000 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+	at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:522)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:677)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:621)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:221)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:136)
+Caused by: java.net.ConnectException: Call From aditya-ubuntu/127.0.1.1 to localhost:9000 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+
+Solution : start-dfs.sh
+
+__________________________________________________________________________________________________________________
+
+Error 2 
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-1.2.1.jar!/hive-log4j.properties
+[ERROR] Terminal initialization failed; falling back to unsupported
+java.lang.IncompatibleClassChangeError: Found class jline.Terminal, but interface was expected
+	at jline.TerminalFactory.create(TerminalFactory.java:101)
+	at jline.TerminalFactory.get(TerminalFactory.java:158)
+	at jline.console.ConsoleReader.<init>(ConsoleReader.java:229)
+	at jline.console.ConsoleReader.<init>(ConsoleReader.java:221)
+	at jline.console.ConsoleReader.<init>(ConsoleReader.java:209)
+	at org.apache.hadoop.hive.cli.CliDriver.setupConsoleReader(CliDriver.java:787)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:721)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:681)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:621)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:221)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:136)
+
+Solution :
+
+I had the same problem and got it working from this link:
+
+https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Getting+Started
+
+Hive has upgraded to Jline2 but jline 0.9x exists in the Hadoop lib.
+So you should follow these steps:
+
+Delete jline from the Hadoop lib directory (it's only pulled in transitively from ZooKeeper).
+export HADOOP_USER_CLASSPATH_FIRST=true
+
+__________________________________________________________________________________________________________________
+
+
+Error 3
+Hive JDBC Permission Denied
+
+Solution
+add this to hadoop/etc/hdfs-sites.xml
+
+    <property>
+        <name>dfs.permissions</name>
+        <value>false</value>
+    </property>

@@ -1,0 +1,5 @@
+$sudo tar -xvf hbase-1.1.2-bin.tar.gz -C /usr/local
+$sudo mv /usr/local/hbase-1.1.2 /usr/local/hbase
+$sudo chown aditya:aditya -R /usr/local/hbase
+
+refer configuration files to setup hbase for standalone and pseudo distributed mode

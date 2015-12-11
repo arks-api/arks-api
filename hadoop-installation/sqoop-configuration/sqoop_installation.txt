@@ -1,0 +1,7 @@
+$sudo tar -xvf sqoop-1.4.6.tar.gz -C /usr/local/
+$sudo mv /usr/local/sqoop-1.4.6 /usr/local/sqoop
+$sudo chown aditya:aditya -R /usr/local/sqoop
+$sudo cp sqoop-1.4.6.jar /usr/local/sqoop/
+
+
+Refer configuration files to configure sqoop

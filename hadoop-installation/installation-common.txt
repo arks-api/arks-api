@@ -1,0 +1,15 @@
+Common Installation Steps
+
+A. Java Installation
+1. $sudo mkdir /usr/lib/jvm
+1. $sudo tar -xvf jdk-7u40-linux-x64.tar.gz -C /usr/lib/jvm
+3. $gedit ~/.bashrc
+4. add following to that file
+   export $JAVA_HOME=/usr/lib/jvm/jdk1.7.0_40
+   export $PATH=$PATH:/usr/lib/jvm/jdk1.7.0_40/bin
+5. $source ~/.bashrc
+6. $java -version
+7. If above command gives output then java is installed
+
+B. Adding Hadoop framwrork paths to .bashrc
+1. copy Hadoop and other components paths to your ~/.bashrc from bashrc.template
