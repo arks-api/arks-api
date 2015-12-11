@@ -1,0 +1,910 @@
+\documentclass[oneside,a4paper,12pt]{report}
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{tabu}
+\usepackage{fancyhdr}
+
+\usepackage{geometry}
+%margin
+ \geometry{
+ left=35mm,
+ right=35mm,
+ top=25mm,
+ bottom=25mm,
+ }
+ 
+\usepackage[titletoc]{appendix}
+\usepackage{titletoc}
+\renewcommand{\appendixname}{Annexure}
+\renewcommand{\bibname}{References}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage[titles]{tocloft}
+\renewcommand{\contentsname}{INDEX}
+\renewcommand{\cftchapfont}{\normalfont\bfseries}% titles in bold 
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\rfoot{PCCOE, Department of Computer Engineering 2015 \hspace{0.5cm} \thepage}
+
+\begin{document}
+
+\newpage
+
+\begin{center}
+
+\thispagestyle{empty}
+\textbf{SAVITRIBAI PHULE PUNE UNIVERSITY} \\[4ex]
+\textbf{A PRELIMINARY PROJECT REPORT ON}  \\[8ex]
+\textbf{ \Large Hadoop add-on API for Advanced Content Based Search \& Retrieval} \\[8ex]
+
+SUBMITTED TOWARDS THE \\
+PARTIAL FULFILLMENT OF THE REQUIREMENTS OF \\[4ex]
+
+\textbf{BACHELOR OF ENGINEERING (Computer Engineering)} \\[4ex]
+
+\textbf{BY} \\[4ex]
+
+
+\begin{tabular}{cc}
+Kshama Jain & B120334280 \\
+Aditya Kamble & B120334297 \\
+Siddhesh Palande & B120334356 \\
+Rahul Rao & B120334381 \\[4ex]
+\end{tabular}
+
+
+\textbf{Under The Guidance of} \\[4ex]
+Prof. Shailesh Hule \\[4ex]
+
+\begin{figure}[h]
+\includegraphics{college_logo}
+\centering
+\end{figure}
+
+\textbf{DEPARTMENT OF COMPUTER ENGINEERING} \\[4ex]
+\textbf{Pimpri Chinchwad Education Trust's \\ \large Pimpri Chinchwad College of Engineering} \\[4ex]
+\textbf{Sector -26, Pradhikaran, Nigdi, \\ Near Akurdi Railway Station, Pune, Maharashtra 411044}
+
+\end{center}
+
+
+
+\newpage
+
+\thispagestyle{empty}
+\begin{center}
+
+\begin{figure}[h]
+\includegraphics{college_logo}
+\centering
+\end{figure}
+
+\textbf{Pimpri Chinchwad Education Trust's \\ \large Pimpri Chinchwad College of Engineering} \\[4ex]
+\textbf{DEPARTMENT OF COMPUTER ENGINEERING} \\[10ex]
+
+\textbf{\Large CERTIFICATE} \\[10ex]
+
+This is to certify that the Project Entitled \\[4ex]
+\textbf{ \Large Hadoop add-on API for Advanced Content Based Search \& Retrieval} \\[8ex]
+
+Submitted By \\[4ex]
+
+\begin{tabular}{cc}
+Kshama Jain & Exam No: \\
+Aditya Kamble & Exam No: \\
+Siddhesh Palande & Exam No: \\
+Rahul Rao & Exam No: \\[8ex]
+\end{tabular}
+
+is a bonafide work carried out by Students under the supervision of Prof. Guide Name and it is submitted towards the partial fulfillment of the requirement of Bachelor of Engineering (Computer Engineering) Project \\[10ex]
+
+
+\end{center}
+
+\begin{tabular}{cc}
+Prof. Shailesh Hule \hspace{5cm}  & Prof. HOD Name \\
+Internal Guide \hspace{5cm} &   H.O.D \\
+Dept. of Computer Engg. \hspace{5cm} &  Dept. of Computer Engg. \\
+\end{tabular}
+
+\newpage
+\pagenumbering{roman}
+\begin{center}
+\renewcommand{\thepage}{\arabic{page}}
+\textbf{Abstract} \\[8ex]
+
+\end{center}
+
+\paragraph{} 
+Unstructured data like doc, pdf, accdb is lengthy to search and filter for desired information. We need to go through every file manually for finding information. It is very time consuming and frustrating. It doesn’t need to be done this way if we can use high computing power to achieve much faster content retrieval. 
+
+\paragraph{} 
+We can use features of big data management system like Hadoop to organize unstructured data dynamically and return desired information. Hadoop provides features like Map Reduce, HDFS, HBase to filter data as per user input. Finally we can develop Hadoop Addon for content search and filtering on unstructured data. This addon will be able to provide APIs for different search results and able to download full file, part of files which are actually related to that topic. It will also provide API for context aware search results like most visited documents and much more relevant documents placed first so user work get simplified.  
+
+\paragraph{}
+This Addon can be used by other industries and government authorities to use Hadoop for their data retrieval as per their requirement. 
+
+\paragraph{}
+After this addon, we are also planning to add more API features like content retrieval from scanned documents and image based documents
+
+
+\newpage
+
+\begin{center}
+
+\textbf{Acknowledgments} \\[8ex]
+
+\end{center}
+
+
+It gives us great pleasure in presenting the preliminary project report on \textbf{Hadoop add-on API for Advanced Content Based Search \& Retrieval}. \\[4ex]
+
+I would like to take this opportunity to thank my internal guide \textbf{Prof. Shailesh Hule} for giving me all the help and guidance I needed. I am really grateful to them for their kind support. Their valuable suggestions were very helpful. \\[4ex]
+
+I am also grateful to \textbf{Prof. HOD Name} , Head of Computer Engineering Department, \textbf{Pimpri Chinchwad Education Trust's Pimpri Chinchwad College of Engineering} for his indispensable support, suggestions. \\[4ex]
+
+In the end our special thanks to \textbf{Other Person Name} for providing various resources such as laboratory with all needed software platforms, continuous Internet connection,
+for Our Project. \\[4ex]
+
+\begin{flushright}
+Kshama Jain \\
+Aditya Kamble \\
+Siddhesh Palande \\
+Rahul Rao \\
+(B.E. Computer Engg.) \\
+\end{flushright}
+
+
+
+\newpage
+
+\begingroup
+\let\cleardoublepage\clearpage
+\tableofcontents
+\listoffigures
+\listoftables
+\let\cleardoublepage\clearpage
+\endgroup
+
+\pagenumbering{arabic}
+\begin{center}
+\chapter{Synopsis}
+\end{center}
+
+\newpage
+
+\section{Project Title}
+\paragraph{} 
+Hadoop add-on API for Advanced Content Based Search \& Retrieval
+
+\section{Project Option}
+\paragraph{}
+Persistent Systems Sponsored Project
+
+\section{Internal Guide}
+\paragraph{} 
+Prof. Shailesh Hule 
+
+\section{Sponsorship and External Guide}
+\paragraph{} 
+Mr. Atul Shimpi ( Persistent Systems ) 
+
+\section{Technical Keywords (As per ACM Keywords)}
+\paragraph{}
+
+\begin{itemize}
+\item Hadoop
+\item HDFS
+\item MapReduce
+\item HBase
+\item Content Based System
+\end{itemize}
+
+\section{Problem Statement}
+\paragraph{} 
+Hadoop add-on API for Advanced Content Based Search \& Retrieval
+
+\section{Abstract}
+\paragraph{} 
+Unstructured data like doc, pdf, accdb is lengthy to search and filter for desired information. We need to go through every file manually for finding information. It is very time consuming and frustrating. It doesn’t need to be done this way if we can use high computing power to achieve much faster content retrieval. 
+
+\paragraph{} 
+We can use features of big data management system like Hadoop to organize unstructured data dynamically and return desired information. Hadoop provides features like Map Reduce, HDFS, HBase to filter data as per user input. Finally we can develop Hadoop Addon for content search and filtering on unstructured data. This addon will be able to provide APIs for different search results and able to download full file, part of files which are actually related to that topic. It will also provide API for context aware search results like most visited documents and much more relevant documents placed first so user work get simplified.  
+
+\paragraph{}
+This Addon can be used by other industries and government authorities to use Hadoop for their data retrieval as per their requirement. 
+
+\paragraph{}
+After this addon, we are also planning to add more API features like content retrieval from scanned documents and image based documents
+
+\section{Goals and Objectives}
+
+\textbf{Goals:} \\
+Current Systems Focus on Search by Title,Author,etc which Is time consuming and finding relevant content from those documents is tedious task. So there is a need of such a system which shall find the relevant contents to the end user \\
+
+
+\noindent \textbf{Objective:} \\
+To find the relevant content from the huge number of PDF files present on Hadoop Distributed File System \\
+
+
+
+\section{Relevant mathematics associated with the Project}
+\noindent
+S = \{s,e,x,y,DD,NDD,Mem-shared\} \\
+s= start state -> Taking input from the user as search query\\ e= End State -> return the output to the user in the form text based content \\
+x = Input -> Search Query 
+y = Output -> Text Based Result 
+DD = Deterministic Data \\
+1) Number of PDF Files \\
+2) Keyword Tokenisation and Filteration \\
+3) Number of DataNodes 4) Search Progress 
+5) Number of Results Obtained 
+NDD = Non Deterministic Data \\
+1) Failure of Cluster Nodes \\
+2) Communication Failure  \\
+Mem-Shared = Storage Space 
+1) HDFS will be distributed among a number of nodes in Hadoop Cluster and will share common FileSystem which will be managed by Hadoop \\
+
+
+\section{Names of Conferences / Journals where papers can be published}
+\paragraph{}
+IFERP - International Conference Institute for Engineering Research and Publication  
+
+\section{Review of Conference/Journal Papers supporting Project idea}
+\paragraph{}
+
+Mail of acceptance
+
+\section{Plan of Project Execution}
+\begin{table}[!htbp]
+\begin{center}
+\def\arraystretch{1.5}
+  \begin{tabular}{| c | c | c | c |}
+       \hline
+
+	\textbf{Activity} & \textbf{Weeks to Spend} & \textbf{Deliverables} & \textbf{Priority}\\ \hline
+	Analysis of Existing System & 2 weeks & - & Normal \\ \hline
+	Requirement Gathering & 2 weeks & Requirements & Normal \\ \hline 
+	Literature Survey & 3 Week & - & Normal \\ \hline
+	Designing and Planning & 5 weeks & Modules & High \\ \hline
+	Implementation & 10 weeks & API & High \\ \hline
+	Testing & 3 weeks & Test Report & High \\ \hline
+	Documentation & 4 week & Project Report & Normal \\ \hline
+\end{tabular}
+ \caption { Plan of Project Execution }
+ \label{tab:hreq}
+\end{center}
+
+\end{table}
+
+
+\begin{center}
+\chapter{Technical Keywords}
+\end{center}
+\newpage
+\section{Area of Project}
+\paragraph{}
+This  system  shall  retrieve  the  required  contents  of  files  which  are  in  an  unstructured  format containing huge amount of Data like e-books in a digital library where the number of books are present in thousands. The scope here is initially limited to PDF files which may be expanded to other unstructured formats like ePUB, mobi.
+\paragraph{}
+The input is provided to the system API in the form of search query which will be firstly filtered to find the important expression as a query to the API which will return the important content to the user in the form of paragraph or text highlighted using the power of distributed computing. 
+\paragraph{}
+The particular page or the Entire book itself can be downloaded by the Library users if the content is satisfied else the search continues for finding relevant content
+
+\section{Technical Keywords}
+\begin{enumerate}
+\item Hadoop: o Hadoop is an open-source framework that allows to store and process big data in a distributed environment across clusters of computers using simple programming models. 
+\begin{itemize}
+\item Distributed
+\item Scalable
+\item Fault-tolerant
+\item Open source
+\end{itemize}
+
+\item HDFS:
+\begin{itemize}
+\item HDFS, the Hadoop Distributed File System, is responsible for storing data on the cluster.
+\item Data is split into blocks and distributed across multiple nodes in the cluster. 
+\item HDFS is a Java-based file system that provides scalable and reliable data storage, and it was designed to span large clusters of commodity servers.
+\end{itemize}
+
+
+\item MapReduce
+\begin{itemize}
+\item MapReduce is the system used to process data in the Hadoop Cluster.
+\item Consist of to phases:Map and the Reduce
+\item Each map task operates on discrete portion of the overall dataset
+\item After all Maps are compete, the mapReduce system distributes the intermediate data to nodes which perform the Reduce phase
+\end{itemize}
+
+\item HBase
+\begin{itemize}
+\item HBase is an open source, non-relational, distributed database 
+\item The data is partitioned based on the RowKeys into Regions.
+\item Each Region contains a range of RowKeys based on their binary order.
+\item A RegionServer can contain several Regions.
+\end{itemize}
+
+\item Content based:
+\begin{itemize}
+\item Using information manually entered or included in the table design, such as titles, descriptive keywords from a limited vocabulary, and predetermined classification schemes. The primary benefit of using content-based retrieval is reduced time and effort required to obtain image-based information.
+\end{itemize}
+
+\end{enumerate}
+
+
+\begin{center}
+\chapter{Introduction}
+\newpage
+\end{center}
+\section{Project Idea}
+\paragraph{}
+Basic project idea is to reduce manual efforts for content based searching in large set of documents using Hadoop Big Data Management framework to automate content based searching and retrieving the relevant content. 
+\section{Motivation of the Project}
+\paragraph{}
+Taks like assignment completion, taking notes from text books and reference books on particular topic, topics for presentation need deep reading and need to go through every document manually just to find relevant content on given topic.
+\paragraph{}
+Currently present systems are only searching based on document title, author, size, and time but not on content. So to do content based search on big data documents and large text data Haddop framework can be used.
+\paragraph{}
+So using Hadoop Big Data management framework consist of HDFS, MapReduce, and HBase, we are developing content based search on PDF documents to solve real life problem. So this is basic motivation for the project.
+\section{Literature Survey}
+
+{\tabulinesep=2mm
+   \begin{longtabu} { |p{3.5cm} | p{3.5cm} | p{3.5cm }| p{3.5cm }|}
+       \hline
+
+\textbf{Title} & \textbf{Keyword} & \textbf{Content} & \textbf{Author}\\ \hline
+Hadoop-HBase for Large- Scale  Data (2011) &
+large-scale  data;  distributed  storage;  Hadoop; HDFS; Map Reduce; HBase; noSQL database &
+The  paper  aims  at evaluating the performance of random reads and random writes of data storage location information to HBase and retrieving and storing  data  in  HDFS  respectively. &
+Mehul Nalin Vora \\ \hline
+
+High Performance and Fault Tolerant Distributed File System for Big Data Storage and Processing using Hadoop(2014) &
+Big data; Analytics; Hadoop; Hadoop Distributed File System (HDFS); Hype cycle; MapReduce; Replication; Faulttolerance; Unstructured data &
+In this paper they have highlighted the evolution and rise of big data  and discussed how HDFS produces multiple replicas of data. &
+E.Sivaraman, Dr.R.Manickachezian \\ \hline
+
+Handling Big Data Efficiently by using Map Reduce Technique(2014) &
+Data Mining; Clustering; DBMS; Parallel processing; Hadoop; MapReduce. &
+ In this paper, They discussed work around MapReduce, its advantages, disadvantages and how it can be used in integration with other technology. &
+Seema Maitrey, C.K. Jha \\ \hline
+
+The Dawn of Big Data - Hbase &
+HBase, Hadoop Distributed File System (HDFS), HBase column oriented table. &
+This paper includes the step by step introduction to the HBase,IdentifY differences between apache HBase and a traditional RDBMS. &
+Vijayalakshmi Bhupathirajul, Ravi Prasad Ravud \\ \hline
+      
+   \end{longtabu}
+}
+
+
+
+
+\begin{center}
+\chapter{Problem Definition and scope}
+\end{center}
+
+\newpage
+\section{Problem Statement}
+Hadoop add-on API for Advanced Content Based Search \& Retrieval
+
+\subsection{Goals and objectives}
+\noindent \textbf{Goals:} \\
+Current Systems Focus on Search by Title,Author,etc which Is time consuming and finding relevant content from those documents is tedious task. So there is a need of such a system which shall find the relevant contents to the end user \\
+
+\noindent \textbf{Objective:} \\
+To find the relevant content from the huge number of PDF files present on Hadoop Distributed File System \\
+
+\subsection{Statement of scope}
+\paragraph{}
+This system shall retrieve the required contents of files which are in an unstructured format containing huge amount of Data like e-books in a digital library where the number of books are present in thousands. The scope here is initially limited to PDF files which may be expanded to other unstructured formats like ePUB, mobi.  
+
+\paragraph{}
+The input is provided to the system API in the form of search query which will be firstly filtered to find the important expression as a query to the API which will return the important content to the user in the form of paragraph or text highlighted using the power of distributed computing. 
+
+\paragraph{}
+The particular page or the Entire book itself can be downloaded by the Library users if the content is satisfied else the search continues for finding relevant content 
+
+
+\section{Software context}
+\paragraph{}
+The end product of this project is the API for the distributed system having hadoop distributed system which would have enhanced abilities in searching the relevant contents inside big data of documents in a very rapid manner by completely harnessing the power of distributed computing and searching algorithms.This API shall be provided as an AddOn feature on top of Hadoop specially for content based retrieval purposes which would mainly deal with unstructured big data like PDF files.
+
+\section{Major Constraints}
+\paragraph{}
+\begin{enumerate}
+\item The first constraint is the that API used on a standalone system would not provide good performance required for content based retrieval system developed by the developer.
+\item A pseudo distributed system deployed using different number of virtual machines would almost provide the similar performance as that of standalone systems depending on the number of virtual machine instances running simultaneously and the amount of memory allocated to each instance.Here care must be taken that guest nodes should not become a bottleneck to the hosted master node.
+\item The best and suggested recomendation is that the API should be used and deployed on a fully-distributed system of nodes each connected to each other having independent memory ,disk and processor which will perform the best and provide expected results.
+\end{enumerate}
+
+\section{Methodologies of Problem solving and efficiency issues}
+\begin{enumerate}
+\item Single Mode
+When a cluster with only a single node is used for implementing the content based retrieval system,slower performance is expected due to the less amount of memory and processing power.
+
+\item Pseudo Distributed Mode
+When a system is implemented either with number of virtual machines the different daemons as different process then the system is expected to perform better 
+
+\item Fully Distributed Mode
+When a cluster has number of physical nodes and hadoop daemons as different java processes with greater than 10 or more nodes in a single rack then the expected results are expected to be more better due to the presence of large storage and processing power.
+\end{enumerate}
+
+\section{Scenario in which multi-core, Embedded and Distributed Computing used}
+\paragraph{}
+The trends are nowadays shifting from standalone single node applications to distributed applications where in Java Frameworks like Hadoop help the applications to utlize the power of distributed computing wherein each and every node is assigned a task and the result is obtained to the master node which assigns the tasks to the slave nodes.
+
+\section{Outcome}
+\paragraph{}
+\begin{enumerate}
+\item The system is expected to provide the content based on the keywords entered in the form of keywords and the output shall be in the form of any of the following formats:
+\item Entire Document
+\item Content and the required paragraphs surrounding it
+\item Only Paragraph itself 
+\item Only Particular Page itself
+and many such options shall be provided in the API.
+\end{enumerate}
+
+\section{Applications}
+\begin{itemize}
+\item Content based search and retrieval on
+\begin{enumerate}
+\item Digital library books 
+\item IEEE Papers
+\item Private Authorities
+\item Government Authorities
+\item Unstructured text files
+\end{enumerate}
+
+\item This API can be used to develop above functionality on platforms like
+\begin{enumerate}
+\item Web Application
+\item Android Application
+\item Standalone Application
+\item Command Line Interface Application
+\end{enumerate}
+
+\end{itemize}
+
+\section{Hardware Resources Required}
+\begin{itemize}	
+\item Memory require for Hadoop installation and HBase and Map Reduce components.
+\item API requires minimum 100 MB space as it contains core components for content based retrieval
+\item 4 GB Primary Memory / RAM
+\item Intel i3/i5/i7 64bit or AMD Processors
+\item SSH Authentication to communicate with Namenode and Datanodes
+\end{itemize}
+
+\section{Software Resources Required}
+\begin{itemize}
+\item Any Open Source Linux Distribution.(Ubuntu Server version 14.04.2 Preferred)
+\item OPENSSH installed on each machine with public key of each node in authorized\_keys directory along with the localhost.
+\item JDK Version 1.7 or above
+\item JAVA\_HOME to be appended in the \$PATH environment variable
+\item Hostname to be initialized for each node in the /etc/hosts file having a masternode (namenode), secondary namenode and various slave nodes to be added.
+\item \$HADOOP\_HOME environment variable path to added in the ~/.bashrc 
+\item Following Files to be configured in \$HADOOP\_HOME/etc/hadoop directory
+\end{itemize}
+
+
+\begin{center}
+\chapter{Project Plan}
+\newpage
+\end{center}
+\section{Project Estimates}
+
+\subsection{Reconciled Estimates}
+\paragraph{}
+Reconciliation is the method of bringing together all of the data and analyses into one final estimate of value. Hence following is the total data which we have reconciled and given approx metric of all the factors. \\
+
+\subsubsection{Cost Estimate}
+The cost of project includes both hardware and software. \\[4ex]
+\textbf{Hardware:} \\ \\
+The total hardware cost includes the price of systems with following configuration: \\
+\begin{itemize}
+\item Intel Core i3 processor
+\item 4 GB RAM
+\item 200 GB of Hard Disk
+\item NIC Card
+\item Ethernet Cable
+\item Wireless Router  \\
+\end{itemize} 
+
+So , the total cost will be around Rs. 80,000/- \\
+
+\noindent \textbf{Software:} \\ \\
+There is no software cost as such as all the software used for this project is open
+source.
+
+\subsubsection{Time Estimates}
+The total time required is 3 months for developing the Hadoop API.
+
+\subsection{Project Resources}
+\paragraph{}
+\textbf{ \\ Hardware Resources}
+\begin{itemize}
+\item There shall be N number of nodes each having the following hardware configuration in a fully distributed system connected environment together in a wired manner using Ethernet interface.
+\item Intel i3/i5/i7 processor
+\item Ethernet Interface on NIC
+\item Virtualization of upto 2 or 3 nodes on a single machine for testing purposes
+\item 2 or 4 GB RAM (and upto 512 MB for each node for pseudo disrtibuted) \\[3ex]
+\end{itemize}
+
+\textbf{Software Resources}
+\begin{itemize}
+\item Any Open Source Linux Distribution.(Ubuntu Server version 14.04.2 Preferred)
+\item OPENSSH installed on each machine with public key of each node in authorized\_keys directory along with the localhost.
+\item JDK Version 1.7 or above
+\item JAVA\_HOME to be appended in the \$PATH environment variable
+\item Hostname to be initialized for each node in the /etc/hosts file having a masternode (namenode), secondary namenode and various slave nodes to be added.
+\item \$HADOOP\_HOME environment variable path to added in the ~/.bashrc 
+\item Following Files to be configured in \$HADOOP\_HOME/etc/hadoop directory
+
+	\begin{enumerate}
+	\item core-site.xml
+	\item hadoop-env.sh
+	\item yarn-site.xml
+	\item mapred-site.xml
+	\item master
+	\item slave
+	\end{enumerate}
+
+\item Master node with Ubuntu Workstation version preferred for supporting Eclipse IDE with Hadoop plugin for development and Server having Ubuntu Server version Preferred. \\[3ex]
+\end{itemize}
+
+\textbf{Tools}
+\begin{itemize}
+\item Eclipse IDE
+\item Hadoop Eclipse Plugin
+\item Java 1.7
+\item Hadoop Java Libraries.
+\end{itemize}
+
+
+\section{Project Schedule}
+
+\subsection{Project task set}
+Major Tasks in the Project stages are: 
+\begin{itemize}
+\item Create distributed system with Hadoop namenodes and datanodes
+\item Develop API methods for extracting keywords from input query
+\item Test API methods for finding keywords from input query
+\item Develop API methods to perform keyword search on HDFS data using Map Reduce operations
+\item Test API methods to perform keyword search on HDFS data using Map Reduce operations
+\item Design database schema for indexing each and every document in HDFS
+\item Schema validation for HBase indexing database
+\item Develop background service for indexing newly added data to HBase database automatically
+\item Test background service for indexing newly added data to HBase database is working automatically or not
+\item Integrating all modules
+\item Integration testing
+\end{itemize}
+
+\subsection{Task network}
+\begin{figure}[H]
+\includegraphics{task_network}
+\caption{Task Network}
+\end{figure}
+
+\subsection{Timeline Chart}
+\begin{figure}[H]
+\includegraphics{timeline_chart}
+\caption{Timeline Chart}
+\end{figure}
+
+\section{Team Organization}
+\subsection{Team structure}
+For this project team is of 4 developers. 
+\begin{table}[!htbp]
+\begin{center}
+\def\arraystretch{1.5}
+  \begin{tabular}{| c | c |}
+       \hline
+       
+Team Member & Roles \\ \hline
+Kshama Jain & Literature Survey and Solution Analysis \\ \hline
+Aditya Kamble & Software API Development and Testing \\ \hline
+Rahul Rao & System Management and API Development \\ \hline
+Siddhesh Palande & Integration and Testing \\ \hline
+       
+\end{tabular}
+ \caption { Team Structure }
+ \label{tab:hreq}
+\end{center}
+
+\end{table}
+\subsection{Management reporting and communication}
+\paragraph{}
+The communication and reporting of work is done on weekly basis depending upon the time which is around 4hrs for a week and since they are sharing the same premises the communication is also excellent
+
+
+\begin{center}
+\chapter{Software requirement specification (SRS is to be prepared using relevant mathematics derived and software engg. Indicators in Annex A and B)}
+\end{center}
+\newpage
+
+\section{Introduction}
+\paragraph{} 
+Unstructured data like doc, pdf, accdb is lengthy to search and filter for desired information. We need to go through every file manually for finding information. It is very time consuming and frustrating. It doesn’t need to be done this way if we can use high computing power to achieve much faster content retrieval. 
+
+\paragraph{} 
+We can use features of big data management system like Hadoop to organize unstructured data dynamically and return desired information. Hadoop provides features like Map Reduce, HDFS, HBase to filter data as per user input. Finally we can develop Hadoop Addon for content search and filtering on unstructured data. This addon will be able to provide APIs for different search results and able to download full file, part of files which are actually related to that topic. It will also provide API for context aware search results like most visited documents and much more relevant documents placed first so user work get simplified.  
+
+\paragraph{}
+This Addon can be used by other industries and government authorities to use Hadoop for their data retrieval as per their requirement. 
+
+\paragraph{}
+After this addon, we are also planning to add more API features like content retrieval from scanned documents and image based documents
+
+\subsection{Purpose and Scope of Document}
+\paragraph{}
+This system shall retrieve the required contents of files which are in an unstructured format containing huge amount of Data like e-books in a digital library where the number of books are present in thousands. The scope here is initially limited to PDF files which may be expanded to other unstructured formats like ePUB, mobi.  
+
+\paragraph{}
+The input is provided to the system API in the form of search query which will be firstly filtered to find the important expression as a query to the API which will return the important content to the user in the form of paragraph or text highlighted using the power of distributed computing. 
+
+\paragraph{}
+The particular page or the Entire book itself can be downloaded by the Library users if the content is satisfied else the search continues for finding relevant content 
+
+\subsection{Overview of responsibilities of Developer}
+\paragraph{}
+Overview of responsibilities of Developer
+
+\section{Usage Scenario}
+This section provides various usage scenarios for the system to be developed.
+
+\subsection{User profiles}
+There will be number of users who will use the same application which will be provided by the developer. As the user search for query in the HDFS of Distributed Hadoop System, system will return the result with expected outcome. 
+
+\subsection{Use-cases}
+All use-cases for the software are presented.
+
+{\tabulinesep=2mm
+   \begin{longtabu} { |p{2.5cm} | p{2.5cm} | p{2.5cm }| p{2.5cm }| p{2.5cm }|}
+       \hline
+
+\textbf{Sr No} & \textbf{Use Case } & \textbf{Actor} & \textbf{Description} & \textbf{Goals} \\ \hline
+
+1 & Use case 1 & User & Add Document & User add document to HDFS system using API  Insert user added document to HDFS and scan for keywords to store in metadata.
+\\ \hline
+2 & Use case 2 & Administrator & Setup Hadoop cluster. & Hadoop cluster will work with our addon API for content based retrieval. \\ \hline
+
+   \end{longtabu}
+}
+
+
+
+\subsection{Use Case View}
+\begin{figure}[H]
+\includegraphics{use_case_diagram}
+\caption{Data Flow Diagram}
+\end{figure}
+
+
+\section{Data Model and Description}
+
+\subsection{Data Description}
+\paragraph{}
+In this project we are searching and retrieving information from data inside HDFS. Hadoop Map Reduce operations will be used to perform key value pair generation and depend upon result information is searched. 
+\paragraph{}
+Here, data is documents in PDF ( Portable Document Format ) format. These documents are stored on HDFS - Hadoop Distributed File System. These documents are considered as raw data. These documents can have properties like
+\begin{itemize}
+\item Name
+\item Size
+\item Date
+\item Author
+\end{itemize}
+\paragraph{}
+Document meta data is also maintain in HBase distributed database. It has attributes like
+\begin{itemize}
+\item Content Keywords
+\item Index Keyword
+\item Document Keywords
+\end{itemize}
+This information will be useful to filter documents before performing content based  searching operations.
+
+\subsection{Data objects and Relationships}
+\begin{figure}[H]
+\includegraphics{data_model}
+\caption{Data Model}
+\end{figure}
+
+\section{Functional Model and Description}
+
+\subsection{Data Flow Diagram}
+\begin{figure}[H]
+\includegraphics{data_flow}
+\caption{Data Flow Diagram}
+\end{figure}
+
+
+\subsection{Activity Diagram}
+\begin{figure}[H]
+\includegraphics{activity_diagram}
+\caption{Activity Diagram}
+\end{figure}
+
+\subsection{Non Functional Requirements}
+\textbf{Performance Requirements} \\ \\
+Memory Requirements:
+\begin{itemize}	
+\item Memory require for Hadoop installation and HBase and Map Reduce components.
+\item API requires minimum 100 MB space as it contains core components for content based retrieval
+\item 4 GB Primary Memory / RAM
+\end{itemize}
+
+Speed Requirements:
+\begin{itemize}
+\item Intel i3/i5/i7 64bit or AMD Processors
+\end{itemize}
+
+\textbf{Security Requirements}
+\begin{itemize}
+\item SSH Authentication to communicate with Namenode and Datanodes
+\end{itemize}
+
+\textbf{Software Quality Attributes}
+
+\paragraph{}
+Software Quality can be defined as “the conformance to explicitly stated functional and performance requirements, explicitly documented development standards, and implicit characteristics that are expected of all professionally developed software”.\\
+	
+\textbf{Software Quality Attributes are}
+
+\begin{enumerate}
+\item \textbf{Functionality}
+\paragraph{}
+This is an ability by which the software satisfies the needs of the software denoted by suitability, accuracy, interoperability, compliance and security.
+
+\item \textbf{Reliability}
+\paragraph{}
+Due to wired connectivity, reliability can be guaranteed.
+
+\item \textbf{Availability}
+\paragraph{}
+The system should be available during their respected hours.
+
+\item \textbf{Usability}
+\paragraph{}
+This ability indicates that the usefulness of the software.
+
+\item \textbf{Efficiency}
+\paragraph{}    
+This indicates the measure of computing resources and time required by the program to perform.
+
+\item \textbf{Maintainability}
+\paragraph{}
+The ability required to locate or fix bugs in software. There should be facility to add or delete or update documents.
+
+\item \textbf{Portability}
+\paragraph{}
+The software works properly even if the environment gets changed (i.e. change in hardware or software).
+
+\item \textbf{Reusability}
+\paragraph{}
+With new versions of Hadoop this API can be improved using new features of Hadoop
+\end{enumerate}
+
+
+\subsection{State Diagram}
+\paragraph{}
+A state diagram is a type of diagram used in computer science and related fields to describe the behavior of systems. State diagrams require that the system described is composed of a finite number of states; sometimes, this is indeed the case, while at other times this is a reasonable abstraction. Many forms of state diagrams exist, which differ slightly and have different semantics
+
+\begin{figure}[H]
+\includegraphics{state_diagram}
+\centering
+\caption{"State Diagram"}
+\end{figure}
+
+
+\subsection{Design Constraints}
+The primary design constraint is the distributed platform. Since the application is designated for distributed systems. Creating a Application Programming  Interface which is both effective and easily usable will pose a difficult challenge. Other constraints such as limited memory and processing power are also worth considering.
+
+\subsection{Software Interface Description}
+\begin{itemize}
+\item Any Open Source Linux Distribution.(Ubuntu Server version 14.04.2 Preferred)
+\item OPENSSH installed on each machine with public key of each node in authorized\_keys directory along with the localhost.
+\item JDK Version 1.7 or above
+\item JAVA\_HOME to be appended in the \$PATH environment variable
+\item Hostname to be initialized for each node in the /etc/hosts file having a masternode (namenode), secondary namenode and various slave nodes to be added.
+\item \$HADOOP\_HOME environment variable path to added in the ~/.bashrc 
+\item Following Files to be configured in \$HADOOP\_HOME/etc/hadoop directory
+
+	\begin{enumerate}
+	\item core-site.xml
+	\item hadoop-env.sh
+	\item yarn-site.xml
+	\item mapred-site.xml
+	\item master
+	\item slave
+	\end{enumerate}
+
+\item Master node with Ubuntu Workstation version preferred for supporting Eclipse IDE with Hadoop plugin for development and Server having Ubuntu Server version Preferred.
+\end{itemize}
+
+
+\begin{center}
+\chapter{Detailed Design Document using Appendix A and B}
+\newpage
+\end{center}
+\section{Introduction}
+\section{Architectural Design}
+\begin{figure}[H]
+\includegraphics{architecture_design}
+\caption{Architectural Design}
+\end{figure}
+
+\section{Data design (using Appendices A and B)}
+\subsection{Internal software data structure}
+\subsection{Global data structure}
+\subsection{Temporary data structure}
+\subsection{Database description}
+\section{Component Design}
+
+\subsection{Class Diagram}
+\begin{figure}[H]
+\includegraphics{class_input_form}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics{class_keyword_identifier}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics{class_indexer}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics{class_search}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics{class_input_form}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics{class_location}
+\end{figure}
+
+
+\begin{center}
+\chapter{Summary and Conclusion}
+\newpage
+\end{center}
+
+\section{Summery}
+\paragraph{}
+Unstructured data like doc, pdf, accdb is lengthy to search and filter for desired information. We need to go through every file manually for finding information. It is very time consuming and frustrating. It doesn’t need to be done this way if we can use high computing power to achieve much faster content retrieval. This addon will be able to provide APIs for different search results and able to download full file, part of files which are actually related to that topic. It will also provide API for context aware search results like most visited documents and much more relevant documents placed first so user work get simplified.    
+
+\section{Conclusion}
+Thus we can use this API in Hadoop to reduce manual efforts and bring advance content based search and retrieval
+
+
+
+\begin{center}
+\chapter{References}
+\newpage
+\end{center}
+
+\newpage
+
+\begin{appendices}
+\chapter{Laboratory assignments on Project Analysis of Algorithmic Design}
+\chapter{Laboratory assignments on Project Quality and Reliability Testing of Project Design}
+\chapter{Project Planner}
+\chapter{Reviewers Comments of Paper Submitted}
+\chapter{Plagiarism Report}
+\end{appendices}
+
+\end{document}

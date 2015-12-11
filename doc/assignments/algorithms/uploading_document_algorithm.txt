@@ -1,0 +1,10 @@
+Algorithm:
+1) Take the input pdf files from user
+2) Check if corrupt
+3) Upload the file into the Hadoop Distributed Filesystem
+4) Run the Metadata Extracting Algorithm using the Map Reduce Engine.
+5) Extract the Bibliography and Index Contents of each and every document (if present) and related keywords.
+6) Store it in the HBase as metadata.
+7) This metadata will be used by map reduce engine to search and retrieve data from relevant document inside HDFS using keyword relative custom partitioning.
+8) Return the result to the search API
+9) Stop

@@ -1,0 +1,136 @@
+%This is a very basic  BE PROJECT Synopsis template.
+
+
+%############################################# 
+%#########Author :  PROJECT Synopsis###########
+%#########COMPUTER ENGINEERING############
+
+%\title{SYNOPSIS}
+
+\documentclass[oneside,a4paper,12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathptmx}
+\usepackage{amsfonts}
+
+\usepackage{color}
+\usepackage{graphicx} % Required for the inclusion of images
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\usepackage{times} 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{SYNOPSIS}%Header of Document
+\makeatletter
+\let\ps@IEEEtitlepagestyle\ps@fancy
+\makeatother
+
+
+%\usepackage{showframe}
+%\hoffset = 8.9436619718309859154929577464789pt
+%\voffset = 13.028169014084507042253521126761pt
+\begin{document}
+%\maketitle 
+\section{Group Id}
+GC19
+
+\section{Project Title}
+Hadoop add-on API for Advanced Content Based Search \& Retrieval
+
+\section{ Project Option }
+Persistent Systems Sponsored Project
+
+\section{Internal Guide}
+Prof. Shailesh Hule 
+
+\section{ Sponsorship and External Guide} 
+Mr. Atul Shimpi ( Persistent Systems ) 
+
+
+\section{Technical Keywords (As per ACM Keywords)}
+\begin{itemize}
+\item Hadoop
+\item HDFS
+\item MapReduce
+\item HBase
+\item Content Based System
+\end{itemize}
+
+
+
+\section{Problem Statement}
+\label{sec:problem}
+Hadoop add-on API for Advanced Content Based Search \& Retrieval
+\section{Abstract}
+\paragraph{} 
+Unstructured data like doc, pdf, accdb is lengthy to search and filter for desired information. We need to go through every file manually for finding information. It is very time consuming and frustrating. It doesn’t need to be done this way if we can use high computing power to achieve much faster content retrieval. 
+
+\paragraph{} 
+We can use features of big data management system like Hadoop to organize unstructured data dynamically and return desired information. Hadoop provides features like Map Reduce, HDFS, HBase to filter data as per user input. Finally we can develop Hadoop Addon for content search and filtering on unstructured data. This addon will be able to provide APIs for different search results and able to download full file, part of files which are actually related to that topic. It will also provide API for context aware search results like most visited documents and much more relevant documents placed first so user work get simplified.  
+
+\paragraph{}
+This Addon can be used by other industries and government authorities to use Hadoop for their data retrieval as per their requirement. 
+
+\paragraph{}
+After this addon, we are also planning to add more API features like content retrieval from scanned documents and image based documents
+
+\section{Goals and Objectives}
+\textbf{Goals:} \\
+Current Systems Focus on Search by Title,Author,etc which Is time consuming and finding relevant content from those documents is tedious task. So there is a need of such a system which shall find the relevant contents to the end user \\
+
+
+\noindent \textbf{Objective:} \\
+To find the relevant content from the huge number of PDF files present on Hadoop Distributed File System \\
+
+	
+\section{Relevant mathematics associated with the Project}
+\noindent
+S = \{s,e,x,y,DD,NDD,Mem-shared\} \\ \\
+s= start state $->$ Taking input from the user as search query\\ \\ e= End State $->$ return the output to the user in the form text based content \\ \\
+x = Input $->$ Search Query \\
+y = Output $->$ Text Based Result \\ \\ 
+DD = Deterministic Data \\
+1) Number of PDF Files \\ 
+2) Keyword Tokenisation and Filteration \\
+3) Number of DataNodes \\
+4) Search Progress \\
+5) Number of Results Obtained \\ \\
+NDD = Non Deterministic Data \\
+1) Failure of Cluster Nodes \\
+2) Communication Failure  \\
+Mem-Shared = Storage Space \\ \\
+1) HDFS will be distributed among a number of nodes in Hadoop Cluster and will share common FileSystem which will be managed by Hadoop \\
+
+
+\section{Names of Conferences / Journals where papers can be published}
+IFERP - International Conference Institute for Engineering Research and Publication  
+
+
+\section{Review of Conference/Journal Papers supporting Project idea}
+\paragraph{}
+The reviewers committee of NIER congratulate  you for acceptance of your research paper for International Conference. You are cordially invited to convene the event by presenting your research paper through PowerPoint presentation.The Conference is being organized by NIER-India in association with "Technoarete"
+
+\section{Plan of Project Execution}
+\begin{table}[!htbp]
+\begin{center}
+\def\arraystretch{1.5}
+  \begin{tabular}{| c | c | c | c |}
+       \hline
+
+	\textbf{Activity} & \textbf{Weeks to Spend} & \textbf{Deliverables} & \textbf{Priority}\\ \hline
+	Analysis of Existing System & 2 weeks & - & Normal \\ \hline
+	Requirement Gathering & 2 weeks & Requirements & Normal \\ \hline 
+	Literature Survey & 3 Week & - & Normal \\ \hline
+	Designing and Planning & 5 weeks & Modules & High \\ \hline
+	Implementation & 10 weeks & API & High \\ \hline
+	Testing & 3 weeks & Test Report & High \\ \hline
+	Documentation & 4 week & Project Report & Normal \\ \hline
+\end{tabular}
+ \caption { Plan of Project Execution }
+ \label{tab:hreq}
+\end{center}
+
+\end{table}
+
+\end{document}
