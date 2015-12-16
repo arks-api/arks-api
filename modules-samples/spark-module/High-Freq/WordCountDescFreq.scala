@@ -4,7 +4,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 
-object Main {
+object WordCountDescFreq {
 
   def main(args: Array[String]) 
   {
