@@ -1,6 +1,7 @@
 package com.modules.metadata;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
@@ -85,22 +86,31 @@ public class MetadataManager {
         putFileInfo.add(Bytes.toBytes(MetaSchama.CF_FILE_ID),
                 Bytes.toBytes(MetaSchama.CO_ID), Bytes.toBytes("1"));
 
-        Put putKeywords = new Put(Bytes.toBytes("1"));
+            List<Put> putKeywordsList = new ArrayList<Put>();
 
         List<String> fileKeywords = fileMetadata.getKeywords();
+
         for (int i = 0; i < fileKeywords.size(); i++) {
+
+            Put putKeywords = new Put(Bytes.toBytes(String.valueOf(i+1)));
 
             putKeywords.add(Bytes.toBytes(MetaSchama.CF_FILE_ID),
                     Bytes.toBytes(MetaSchama.CO_ID), Bytes.toBytes("1"));
             putKeywords.add(Bytes.toBytes(MetaSchama.CF_KEYWORDS),
                     Bytes.toBytes(MetaSchama.CO_KEYWORD),
                     Bytes.toBytes(fileKeywords.get(i)));
+
+            putKeywordsList.add(putKeywords);
         }
 
         try {
 
             fileInfoTable.put(putFileInfo);
-            fileKeywordsTable.put(putKeywords);
+
+            for (int i = 0; i < fileKeywords.size(); i++) {
+
+                fileKeywordsTable.put(putKeywordsList.get(i));
+            }
 
             fileInfoTable.close();
             fileKeywordsTable.close();
@@ -108,6 +118,7 @@ public class MetadataManager {
         } catch (IOException e) {
 
             e.printStackTrace();
+            System.err.println("File Metadata Insertion Failed");
         }
 
         System.out.println("New File Metadata Added");
