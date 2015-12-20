@@ -86,7 +86,7 @@ public class MetadataManager {
         putFileInfo.add(Bytes.toBytes(MetaSchama.CF_FILE_ID),
                 Bytes.toBytes(MetaSchama.CO_ID), Bytes.toBytes("1"));
 
-            List<Put> putKeywordsList = new ArrayList<Put>();
+        List<Put> putKeywordsList = new ArrayList<Put>();
 
         List<String> fileKeywords = fileMetadata.getKeywords();
 
