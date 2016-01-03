@@ -10,77 +10,77 @@ import java.util.List;
  */
 public class FileMetadata {
 
-    private String fileName;
-    private Integer fileSize;
-    private Integer totalPages;
-    private List<String> fileDomains;
-    private List<String> keywords;
+	private String fileName;
+	private String fileSize;
+	private String totalPages;
+	private List<String> fileDomains;
+	private List<Keyword> keywords;
 
-    /***
-     * Default Constructor to create FileMetadata. Use <b>setters</b> and
-     * <b>getters</b> to add meta data of file
-     */
-    public FileMetadata() {
+	/***
+	 * Default Constructor to create FileMetadata. Use <b>setters</b> and
+	 * <b>getters</b> to add meta data of file
+	 */
+	public FileMetadata() {
 
-    }
+	}
 
-    /***
-     * Use this constructor to pass meta data at time of construction.
-     *
-     * @param fileName
-     * @param fileSize
-     * @param totalPages
-     * @param fileDomain
-     * @param keywords
-     */
-    public FileMetadata(String fileName, Integer fileSize, Integer totalPages,
-            List<String> fileDomains, List<String> keywords) {
+	/***
+	 * Use this constructor to pass meta data at time of construction.
+	 *
+	 * @param fileName
+	 * @param fileSize
+	 * @param totalPages
+	 * @param fileDomain
+	 * @param keywords
+	 */
+	public FileMetadata(String fileName, String fileSize, String totalPages,
+			List<String> fileDomains, List<Keyword> keywords) {
 
-        this.fileName = fileName;
-        this.fileSize = fileSize;
-        this.totalPages = totalPages;
-        this.fileDomains = fileDomains;
-        this.keywords = keywords;
-    }
+		this.fileName = fileName;
+		this.fileSize = fileSize;
+		this.totalPages = totalPages;
+		this.fileDomains = fileDomains;
+		this.keywords = keywords;
+	}
 
-    public String getFileName() {
-        return fileName;
-    }
+	public String getFileName() {
+		return fileName;
+	}
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
-    public Integer getFileSize() {
-        return fileSize;
-    }
+	public String getFileSize() {
+		return fileSize;
+	}
 
-    public void setFileSize(Integer fileSize) {
-        this.fileSize = fileSize;
-    }
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
 
-    public Integer getTotalPages() {
-        return totalPages;
-    }
+	public String getTotalPages() {
+		return totalPages;
+	}
 
-    public void setTotalPages(Integer totalPages) {
-        this.totalPages = totalPages;
-    }
+	public void setTotalPages(String totalPages) {
+		this.totalPages = totalPages;
+	}
 
-    public List<String> getFileDomains() {
-        return fileDomains;
-    }
+	public List<String> getFileDomains() {
+		return fileDomains;
+	}
 
-    public void setFileDomains(List<String> fileDomains) {
-        this.fileDomains = fileDomains;
-    }
+	public void setFileDomains(List<String> fileDomains) {
+		this.fileDomains = fileDomains;
+	}
 
-    public List<String> getKeywords() {
-        return keywords;
-    }
+	public List<Keyword> getKeywords() {
+		return keywords;
+	}
 
-    public void setKeywords(List<String> keywords) {
-        this.keywords = keywords;
-    }
+	public void setKeywords(List<Keyword> keywords) {
+		this.keywords = keywords;
+	}
 
 }
