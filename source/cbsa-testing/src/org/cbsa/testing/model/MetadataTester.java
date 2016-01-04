@@ -27,10 +27,32 @@ public class MetadataTester {
         javaBookKeywords.add(new Keyword("jvm", "12"));
 
         FileMetadata javaBookData = new FileMetadata("1",
-                "java complete reference", "hdfs://user/aditya/documents",
-                "50", "600", javaBookDomains, javaBookKeywords);
+                "java complete reference",
+                "hdfs://user/aditya/documents/java.pdf", "50", "600",
+                javaBookDomains, javaBookKeywords);
 
         metadataManager.addNewFileMetadata(javaBookData);
+
+        ArrayList<String> cppBookDomains = new ArrayList<String>();
+        cppBookDomains.add("cpp");
+        cppBookDomains.add("programming");
+        cppBookDomains.add("coding");
+
+        List<Keyword> cppBookKeywords = new ArrayList<Keyword>();
+        cppBookKeywords.add(new Keyword("cpp", "25"));
+        cppBookKeywords.add(new Keyword("virtual", "20"));
+        cppBookKeywords.add(new Keyword("polymorphism", "10"));
+        cppBookKeywords.add(new Keyword("overloading", "10"));
+        cppBookKeywords.add(new Keyword("exceptions", "20"));
+        cppBookKeywords.add(new Keyword("distructor", "12"));
+
+        FileMetadata cppBookData = new FileMetadata("2",
+                "cpp complete reference",
+                "hdfs://user/aditya/documents/cpp.pdf", "50", "600",
+                cppBookDomains, cppBookKeywords);
+
+        metadataManager.addNewFileMetadata(cppBookData);
+
     }
 
 }
