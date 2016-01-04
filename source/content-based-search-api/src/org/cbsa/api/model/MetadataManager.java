@@ -68,6 +68,9 @@ public class MetadataManager {
                 Bytes.toBytes(MetaSchama.CO_FILE_NAME),
                 Bytes.toBytes(fileMetadata.getFileName()));
         putFileInfo.add(Bytes.toBytes(MetaSchama.CF_GENERAL),
+                Bytes.toBytes(MetaSchama.CO_FILE_PATH),
+                Bytes.toBytes(fileMetadata.getFilePath()));
+        putFileInfo.add(Bytes.toBytes(MetaSchama.CF_GENERAL),
                 Bytes.toBytes(MetaSchama.CO_FILE_SIZE),
                 Bytes.toBytes(fileMetadata.getFileSize()));
         putFileInfo.add(Bytes.toBytes(MetaSchama.CF_GENERAL),
@@ -93,7 +96,8 @@ public class MetadataManager {
 
         for (int i = 0; i < fileKeywords.size(); i++) {
 
-            Put putKeywords = new Put(Bytes.toBytes(String.valueOf(i + 1)));
+            Put putKeywords = new Put(Bytes.toBytes(fileMetadata.getFileID()
+                    + "_" + String.valueOf(i)));
 
             putKeywords.add(Bytes.toBytes(MetaSchama.CF_FILE_ID),
                     Bytes.toBytes(MetaSchama.CO_ID),
