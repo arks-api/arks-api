@@ -9,7 +9,7 @@ public class MetaSchama {
     public static final String CO_FILE_SIZE = "file_size";
     public static final String CO_TOTAL_PAGES = "total_pages";
     public static final String CF_DOMAIN = "domain";
-    public static final String CO_SUB_DOMAIN = "subdomain_";
+    public static final String CO_SUB_DOMAIN = "subdomain";
 
     public static final String TB_FILE_KEYWORDS = "file_keywords";
     public static final String CF_KEYWORDS = "keywords";

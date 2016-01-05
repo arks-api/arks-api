@@ -9,6 +9,9 @@ import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.client.ResultScanner;
+import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
 
 @SuppressWarnings("deprecation")
@@ -76,16 +79,9 @@ public class MetadataManager {
         putFileInfo.add(Bytes.toBytes(MetaSchama.CF_GENERAL),
                 Bytes.toBytes(MetaSchama.CO_TOTAL_PAGES),
                 Bytes.toBytes(fileMetadata.getTotalPages()));
-
-        List<String> fileDomains = fileMetadata.getFileDomains();
-
-        for (int i = 0; i < fileDomains.size(); i++) {
-
-            putFileInfo.add(Bytes.toBytes(MetaSchama.CF_DOMAIN),
-                    Bytes.toBytes(MetaSchama.CO_SUB_DOMAIN + i),
-                    Bytes.toBytes(fileDomains.get(i)));
-        }
-
+        putFileInfo.add(Bytes.toBytes(MetaSchama.CF_DOMAIN),
+                Bytes.toBytes(MetaSchama.CO_SUB_DOMAIN),
+                Bytes.toBytes(fileMetadata.getFileDomain()));
         putFileInfo.add(Bytes.toBytes(MetaSchama.CF_FILE_ID),
                 Bytes.toBytes(MetaSchama.CO_ID),
                 Bytes.toBytes(fileMetadata.getFileID()));
@@ -132,5 +128,55 @@ public class MetadataManager {
 
         System.out.println("New File Metadata Added");
 
+    }
+
+    public List<FileMetadata> getFileMetadata() throws IOException {
+
+        List<FileMetadata> fileMetadataList = null;
+        Scan scanFileInfo = null;
+        Scan scanFileKeywords = null;
+        ResultScanner scannerFileInfo = null;
+
+        scanFileInfo = new Scan();
+
+        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_FILE_ID),
+                Bytes.toBytes(MetaSchama.CO_ID));
+        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
+                Bytes.toBytes(MetaSchama.CO_FILE_NAME));
+        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
+                Bytes.toBytes(MetaSchama.CO_FILE_PATH));
+        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
+                Bytes.toBytes(MetaSchama.CO_FILE_SIZE));
+        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
+                Bytes.toBytes(MetaSchama.CO_TOTAL_PAGES));
+        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_DOMAIN),
+                Bytes.toBytes(MetaSchama.CO_SUB_DOMAIN));
+
+        scanFileKeywords = new Scan();
+        scanFileKeywords.addColumn(Bytes.toBytes(MetaSchama.CF_KEYWORDS),
+                Bytes.toBytes(MetaSchama.CO_KEYWORD));
+        scanFileKeywords.addColumn(Bytes.toBytes(MetaSchama.CF_KEYWORDS),
+                Bytes.toBytes(MetaSchama.CO_FREQUENCY));
+
+        try {
+
+            scannerFileInfo = fileInfoTable.getScanner(scanFileInfo);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        for (Result result = scannerFileInfo.next(); result != null; result = scannerFileInfo
+                .next()) {
+
+            System.out.println(result.getColumn(
+                    Bytes.toBytes(MetaSchama.CF_GENERAL),
+                    Bytes.toBytes(MetaSchama.CO_FILE_NAME)));
+        }
+
+        scannerFileInfo.close();
+
+        return fileMetadataList;
     }
 }

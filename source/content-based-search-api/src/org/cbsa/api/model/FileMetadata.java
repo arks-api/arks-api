@@ -25,7 +25,7 @@ public class FileMetadata {
      * @param filePath
      * @param fileSize
      * @param totalPages
-     * @param fileDomains
+     * @param fileDomain
      * @param keywords
      */
     public FileMetadata(String fileID, String fileName, String filePath,
