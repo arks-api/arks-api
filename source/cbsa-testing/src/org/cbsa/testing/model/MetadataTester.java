@@ -13,11 +13,6 @@ public class MetadataTester {
 
         MetadataManager metadataManager = new MetadataManager();
 
-        ArrayList<String> javaBookDomains = new ArrayList<String>();
-        javaBookDomains.add("java");
-        javaBookDomains.add("programming");
-        javaBookDomains.add("coding");
-
         List<Keyword> javaBookKeywords = new ArrayList<Keyword>();
         javaBookKeywords.add(new Keyword("java", "25"));
         javaBookKeywords.add(new Keyword("jdk", "20"));
@@ -32,11 +27,6 @@ public class MetadataTester {
                 "programming", javaBookKeywords);
 
         metadataManager.addNewFileMetadata(javaBookData);
-
-        ArrayList<String> cppBookDomains = new ArrayList<String>();
-        cppBookDomains.add("cpp");
-        cppBookDomains.add("programming");
-        cppBookDomains.add("coding");
 
         List<Keyword> cppBookKeywords = new ArrayList<Keyword>();
         cppBookKeywords.add(new Keyword("cpp", "25"));
