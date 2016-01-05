@@ -14,7 +14,7 @@ public class FileMetadata {
     private final String filePath;
     private final String fileSize;
     private final String totalPages;
-    private final List<String> fileDomains;
+    private final String fileDomain;
     private final List<Keyword> keywords;
 
     /***
@@ -29,7 +29,7 @@ public class FileMetadata {
      * @param keywords
      */
     public FileMetadata(String fileID, String fileName, String filePath,
-            String fileSize, String totalPages, List<String> fileDomains,
+            String fileSize, String totalPages, String fileDomains,
             List<Keyword> keywords) {
 
         this.fileID = fileID;
@@ -37,7 +37,7 @@ public class FileMetadata {
         this.filePath = filePath;
         this.fileSize = fileSize;
         this.totalPages = totalPages;
-        this.fileDomains = fileDomains;
+        this.fileDomain = fileDomains;
         this.keywords = keywords;
     }
 
@@ -61,8 +61,8 @@ public class FileMetadata {
         return totalPages;
     }
 
-    public List<String> getFileDomains() {
-        return fileDomains;
+    public String getFileDomain() {
+        return fileDomain;
     }
 
     public List<Keyword> getKeywords() {
