@@ -29,7 +29,7 @@ public class MetadataTester {
         FileMetadata javaBookData = new FileMetadata("1",
                 "java complete reference",
                 "hdfs://user/aditya/documents/java.pdf", "50", "600",
-                javaBookDomains, javaBookKeywords);
+                "programming", javaBookKeywords);
 
         metadataManager.addNewFileMetadata(javaBookData);
 
@@ -49,7 +49,7 @@ public class MetadataTester {
         FileMetadata cppBookData = new FileMetadata("2",
                 "cpp complete reference",
                 "hdfs://user/aditya/documents/cpp.pdf", "50", "600",
-                cppBookDomains, cppBookKeywords);
+                "programming", cppBookKeywords);
 
         metadataManager.addNewFileMetadata(cppBookData);
 
