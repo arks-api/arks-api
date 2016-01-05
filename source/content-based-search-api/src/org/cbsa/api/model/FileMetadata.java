@@ -29,7 +29,7 @@ public class FileMetadata {
      * @param keywords
      */
     public FileMetadata(String fileID, String fileName, String filePath,
-            String fileSize, String totalPages, String fileDomains,
+            String fileSize, String totalPages, String fileDomain,
             List<Keyword> keywords) {
 
         this.fileID = fileID;
@@ -37,7 +37,7 @@ public class FileMetadata {
         this.filePath = filePath;
         this.fileSize = fileSize;
         this.totalPages = totalPages;
-        this.fileDomain = fileDomains;
+        this.fileDomain = fileDomain;
         this.keywords = keywords;
     }
 
