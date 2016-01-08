@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cbsa.api.model.FileMetadata;
-import org.cbsa.api.model.Keyword;
 import org.cbsa.api.model.MetadataManager;
+import org.cbsa.api.type.Keyword;
 
 public class MetadataTester {
 
@@ -42,6 +42,17 @@ public class MetadataTester {
                 "programming", cppBookKeywords);
 
         metadataManager.addNewFileMetadata(cppBookData);
+
+        List<Keyword> cBookKeywords = new ArrayList<Keyword>();
+        cBookKeywords.add(new Keyword("c", "25"));
+        cBookKeywords.add(new Keyword("array", "20"));
+        cBookKeywords.add(new Keyword("pointers", "10"));
+
+        FileMetadata cBookData = new FileMetadata("3", "c complete reference",
+                "hdfs://user/aditya/documents/c.pdf", "50", "600",
+                "programming", cBookKeywords);
+
+        metadataManager.addNewFileMetadata(cBookData);
 
     }
 
