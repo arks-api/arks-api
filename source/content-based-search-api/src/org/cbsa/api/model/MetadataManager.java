@@ -2,10 +2,14 @@ package org.cbsa.api.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Put;
@@ -13,6 +17,8 @@ import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.cbsa.api.type.Keyword;
+import org.cbsa.api.type.KeywordDetails;
 
 @SuppressWarnings("deprecation")
 public class MetadataManager {
@@ -136,27 +142,169 @@ public class MetadataManager {
         Scan scanFileInfo = null;
         Scan scanFileKeywords = null;
         ResultScanner scannerFileInfo = null;
+        ResultScanner scannerFileKeywords = null;
 
         scanFileInfo = new Scan();
 
-        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_FILE_ID),
-                Bytes.toBytes(MetaSchama.CO_ID));
-        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
-                Bytes.toBytes(MetaSchama.CO_FILE_NAME));
-        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
-                Bytes.toBytes(MetaSchama.CO_FILE_PATH));
-        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
-                Bytes.toBytes(MetaSchama.CO_FILE_SIZE));
-        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
-                Bytes.toBytes(MetaSchama.CO_TOTAL_PAGES));
-        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_DOMAIN),
-                Bytes.toBytes(MetaSchama.CO_SUB_DOMAIN));
+        scanFileInfo.addFamily(Bytes.toBytes(MetaSchama.CF_GENERAL));
+        scanFileInfo.addFamily(Bytes.toBytes(MetaSchama.CF_DOMAIN));
 
         scanFileKeywords = new Scan();
-        scanFileKeywords.addColumn(Bytes.toBytes(MetaSchama.CF_KEYWORDS),
-                Bytes.toBytes(MetaSchama.CO_KEYWORD));
-        scanFileKeywords.addColumn(Bytes.toBytes(MetaSchama.CF_KEYWORDS),
-                Bytes.toBytes(MetaSchama.CO_FREQUENCY));
+        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchama.CF_KEYWORDS));
+
+        try {
+
+            scannerFileInfo = fileInfoTable.getScanner(scanFileInfo);
+            scannerFileKeywords = fileKeywordsTable
+                    .getScanner(scanFileKeywords);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        for (Result result = scannerFileInfo.next(); result != null; result = scannerFileInfo
+                .next()) {
+
+            for (KeyValue keyValue : result.list()) {
+
+                System.out.print(Bytes.toString(keyValue.getValue()) + " ");
+            }
+
+            System.out.println();
+        }
+
+        for (Result result = scannerFileKeywords.next(); result != null; result = scannerFileKeywords
+                .next()) {
+
+            for (KeyValue keyValue : result.list()) {
+
+                System.out.print(Bytes.toString(keyValue.getValue()) + " ");
+            }
+        }
+
+        scannerFileInfo.close();
+        scannerFileKeywords.close();
+
+        return fileMetadataList;
+    }
+
+    public List<String> getDocumentsWithKeywords(List<String> searchKeywordsList)
+            throws IOException {
+
+        List<String> documentPathList = new ArrayList<String>();
+        List<KeywordDetails> keywordDetailsList = new ArrayList<KeywordDetails>();
+
+        Scan scanFileInfo = null;
+        Scan scanFileKeywords = null;
+        ResultScanner scannerFileInfo = null;
+        ResultScanner scannerFileKeywords = null;
+
+        // retrieve keywords list
+
+        scanFileKeywords = new Scan();
+        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchama.CF_FILE_ID));
+        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchama.CF_KEYWORDS));
+
+        try {
+
+            scannerFileKeywords = fileKeywordsTable
+                    .getScanner(scanFileKeywords);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        for (Result result = scannerFileKeywords.next(); result != null; result = scannerFileKeywords
+                .next()) {
+
+            Iterator<KeyValue> iterator = result.list().iterator();
+
+            while (iterator.hasNext()) {
+
+                /*
+                 * System.out.println(Bytes.toString(iterator.next().getValue())
+                 * + " " + Bytes.toString(iterator.next().getValue()) + " " +
+                 * Bytes.toString(iterator.next().getValue()));
+                 */
+
+                KeywordDetails tempKeywordDetails = new KeywordDetails(
+                        Bytes.toString(iterator.next().getValue()),
+                        Bytes.toString(iterator.next().getValue()),
+                        Bytes.toString(iterator.next().getValue()));
+
+                keywordDetailsList.add(tempKeywordDetails);
+
+            }
+        }
+
+        // System.out.println();
+        // System.out.println("Before Filtering");
+        //
+        // for (KeywordDetails keywordDetails : keywordDetailsList) {
+        //
+        // System.out.println(keywordDetails.getFileID() + " "
+        // + keywordDetails.getFrequency() + " "
+        // + keywordDetails.getKeyword());
+        // }
+
+        // filter the keywordDetails list as per searchKeywords
+
+        Iterator<KeywordDetails> keywordDetailsIterator = keywordDetailsList
+                .iterator();
+
+        while (keywordDetailsIterator.hasNext()) {
+
+            boolean keywordPresent = false;
+
+            KeywordDetails tempKeywordDetails = keywordDetailsIterator.next();
+
+            String currentkeyword = tempKeywordDetails.getKeyword();
+
+            for (String keyword : searchKeywordsList) {
+
+                if (keyword.equals(currentkeyword)) {
+
+                    keywordPresent = true;
+                    break;
+                }
+            }
+
+            if (!keywordPresent) {
+
+                keywordDetailsIterator.remove();
+            }
+        }
+
+        // System.out.println("After Filtering");
+        // for (KeywordDetails keywordDetails : keywordDetailsList) {
+        //
+        // System.out.println(keywordDetails.getFileID() + " "
+        // + keywordDetails.getFrequency() + " "
+        // + keywordDetails.getKeyword());
+        // }
+
+        // get fileID of selected keywords list
+
+        Set<String> uniqueFileList = new HashSet<String>();
+
+        for (KeywordDetails keywordDetails : keywordDetailsList) {
+
+            uniqueFileList.add(keywordDetails.getFileID());
+        }
+
+        // for (String fileID : uniqueFileList) {
+        //
+        // System.out.println(uniqueFileList);
+        // }
+
+        // save paths of documents with those fileID
+
+        scanFileInfo = new Scan();
+        scanFileInfo.addFamily(Bytes.toBytes(MetaSchama.CF_FILE_ID));
+        scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
+                Bytes.toBytes(MetaSchama.CO_FILE_PATH));
 
         try {
 
@@ -170,13 +318,24 @@ public class MetadataManager {
         for (Result result = scannerFileInfo.next(); result != null; result = scannerFileInfo
                 .next()) {
 
-            System.out.println(result.getColumn(
-                    Bytes.toBytes(MetaSchama.CF_GENERAL),
-                    Bytes.toBytes(MetaSchama.CO_FILE_NAME)));
+            Iterator<KeyValue> iterator = result.list().iterator();
+
+            while (iterator.hasNext()) {
+
+                String fileID = Bytes.toString(iterator.next().getValue());
+                String filePath = Bytes.toString(iterator.next().getValue());
+
+                if (uniqueFileList.contains(fileID)) {
+
+                    documentPathList.add(filePath);
+                }
+
+            }
         }
 
         scannerFileInfo.close();
+        scannerFileKeywords.close();
 
-        return fileMetadataList;
+        return documentPathList;
     }
 }

@@ -1,4 +1,4 @@
-package org.cbsa.api.model;
+package org.cbsa.api.type;
 
 public class Keyword {
 
