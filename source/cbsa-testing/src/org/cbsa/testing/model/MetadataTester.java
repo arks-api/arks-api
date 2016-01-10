@@ -3,9 +3,9 @@ package org.cbsa.testing.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.cbsa.api.controller.metadata.MetadataManager;
 import org.cbsa.api.model.FileMetadata;
-import org.cbsa.api.model.MetadataManager;
-import org.cbsa.api.type.Keyword;
+import org.cbsa.api.model.Keyword;
 
 public class MetadataTester {
 

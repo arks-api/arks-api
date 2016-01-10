@@ -1,4 +1,4 @@
-package org.cbsa.api.model;
+package org.cbsa.api.controller.metadata;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
+import org.cbsa.api.model.MetaSchama;
 
 @SuppressWarnings("deprecation")
 public class MetadataTables {

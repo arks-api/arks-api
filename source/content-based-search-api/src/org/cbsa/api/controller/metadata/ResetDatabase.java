@@ -1,4 +1,4 @@
-package org.cbsa.api.model;
+package org.cbsa.api.controller.metadata;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
+import org.cbsa.api.model.MetaSchama;
 
 public class ResetDatabase {
 

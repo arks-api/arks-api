@@ -1,4 +1,4 @@
-package org.cbsa.api.type;
+package org.cbsa.api.model;
 
 /***
  * Paragraph class to hold Document ID and Paragraph in that document

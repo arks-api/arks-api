@@ -1,4 +1,4 @@
-package org.cbsa.api.type;
+package org.cbsa.api.model;
 
 /***
  * Document class to hold document ID and DocumentName

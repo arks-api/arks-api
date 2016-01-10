@@ -2,7 +2,7 @@ package org.cbsa.api.controller.search;
 
 import java.util.List;
 
-import org.cbsa.api.type.Paragraph;
+import org.cbsa.api.model.Paragraph;
 
 public class SearchingTools {
 

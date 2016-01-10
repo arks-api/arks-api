@@ -2,8 +2,8 @@ package org.cbsa.api;
 
 import java.util.List;
 
-import org.cbsa.api.type.Document;
-import org.cbsa.api.type.Paragraph;
+import org.cbsa.api.model.Document;
+import org.cbsa.api.model.Paragraph;
 
 public class ContentBasedSearch {
 

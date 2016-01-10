@@ -2,8 +2,6 @@ package org.cbsa.api.model;
 
 import java.util.List;
 
-import org.cbsa.api.type.Keyword;
-
 /***
  * This is container class to store file meta data. Use object of this class to
  * store meta data of file and use this object to add meta data as new entry to

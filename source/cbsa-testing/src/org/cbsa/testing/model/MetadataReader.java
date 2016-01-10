@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.cbsa.api.model.MetadataManager;
+import org.cbsa.api.controller.metadata.MetadataManager;
 
 public class MetadataReader {
 
