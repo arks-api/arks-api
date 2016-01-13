@@ -19,7 +19,7 @@ public class MyClient {
                 ConcurrentLinkedQueue<String> vector = new ConcurrentLinkedQueue<String>();
                 vector.add(str);
                 System.out.println(vector);
-                FileCounterManager.incCounter();
+                // FileCounterManager.incCounter();
                 System.out.println(str + " Added in Queue");
                 String front = vector.poll();
                 Thread t = new Thread(new WordCount(front));
