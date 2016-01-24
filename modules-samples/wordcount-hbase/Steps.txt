@@ -1,0 +1,4 @@
+Steps -
+- Input total PDF files
+- Create set of mappers and use them in set of jobs in parallel
+- word count each page of pdf and sort pages in descending order
