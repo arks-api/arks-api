@@ -15,8 +15,9 @@ public class PdfMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
     protected void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
 
-        String line = value.toString().replaceAll("(?!\")\\p{Punct}", "")
-                .replaceAll("\"", "").replaceAll("[0-9]*", "").toLowerCase();
+        String line = value.toString().replaceAll("\\.", " ")
+                .replaceAll("(?!\")\\p{Punct}", "").replaceAll("\"", "")
+                .replaceAll("[0-9]*", "").toLowerCase();
         StringTokenizer tokenizer = new StringTokenizer(line);
 
         while (tokenizer.hasMoreTokens()) {

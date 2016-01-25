@@ -1,6 +1,7 @@
 package org.wordcounthbase;
 
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -8,6 +9,9 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.cbsa.api.model.Keyword;
 
 public class PdfReducer extends Reducer<Text, LongWritable, Text, LongWritable> {
+
+    private LongWritable total = new LongWritable();
+
     @Override
     protected void reduce(Text key, Iterable<LongWritable> values,
             Context context) throws IOException, InterruptedException {
@@ -16,8 +20,19 @@ public class PdfReducer extends Reducer<Text, LongWritable, Text, LongWritable> 
         for (LongWritable value : values) {
             sum += value.get();
         }
-        context.write(key, new LongWritable(sum));
-        JobManager.keywordList.add(new Keyword(key.toString(), String
-                .valueOf(sum)));
+
+        total.set(sum);
+        String strKey = key.toString();
+        strKey = strKey.trim();
+        strKey = strKey.replaceAll("(\n)", "#");
+
+        StringTokenizer stringTokenizer = new StringTokenizer(strKey, "#");
+        while (stringTokenizer.hasMoreTokens()) {
+            String subKey = stringTokenizer.nextToken();
+            JobManager.keywordList.add(new Keyword(subKey.toString(), String
+                    .valueOf(sum)));
+
+            context.write(new Text(subKey), total);
+        }
     }
 }

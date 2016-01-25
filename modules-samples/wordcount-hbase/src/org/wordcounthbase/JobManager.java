@@ -54,8 +54,8 @@ public class JobManager {
             job.setOutputKeyClass(Text.class);
             job.setOutputValueClass(LongWritable.class);
 
-            FileInputFormat.setInputPaths(job, new Path(
-                    "/opt/dataset/Linux Kernel Development.pdf"));
+            FileInputFormat.setInputPaths(job,
+                    new Path("/opt/dataset/test.pdf"));
             FileOutputFormat.setOutputPath(job,
                     new Path("/opt/dataset/results"));
 
@@ -76,6 +76,7 @@ public class JobManager {
                     "programming", keywordList);
 
             metadataManager.addNewFileMetadata(fileMetadata);
+            System.out.println("Completed");
         }
 
         return job;
