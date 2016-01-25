@@ -3,5 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="/Content Based Search API"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/research-paper-parser"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hbase-libs"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

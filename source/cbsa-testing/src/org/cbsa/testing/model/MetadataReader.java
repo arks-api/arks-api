@@ -14,7 +14,7 @@ public class MetadataReader {
 
         List<String> keywordsList = new ArrayList<String>();
         keywordsList.add("java");
-        keywordsList.add("polymorphism");
+        // keywordsList.add("");
 
         List<String> result = metadataManager
                 .getDocumentsWithKeywords(keywordsList);
@@ -25,5 +25,4 @@ public class MetadataReader {
         }
 
     }
-
 }
