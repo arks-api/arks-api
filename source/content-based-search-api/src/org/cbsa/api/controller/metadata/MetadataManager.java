@@ -145,6 +145,7 @@ public class MetadataManager {
         Scan scanFileKeywords = null;
         ResultScanner scannerFileInfo = null;
         ResultScanner scannerFileKeywords = null;
+        boolean skip = true;
 
         scanFileInfo = new Scan();
 
@@ -170,7 +171,7 @@ public class MetadataManager {
 
             for (KeyValue keyValue : result.list()) {
 
-                System.out.print(Bytes.toString(keyValue.getValue()) + " ");
+                // System.out.print(Bytes.toString(keyValue.getValue()) + " ");
             }
 
             System.out.println();
@@ -181,7 +182,7 @@ public class MetadataManager {
 
             for (KeyValue keyValue : result.list()) {
 
-                System.out.print(Bytes.toString(keyValue.getValue()) + " ");
+                System.out.println(Bytes.toString(keyValue.getValue()) + " ");
             }
         }
 
