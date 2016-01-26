@@ -1,10 +1,9 @@
 package org.wordcounthbase;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.hadoop.mapreduce.Job;
 
 public class WordCount {
 
@@ -12,24 +11,29 @@ public class WordCount {
 
     }
 
-    public List<String> wordCountHBase() throws ClassNotFoundException,
-            IOException, InterruptedException {
+    public void wordCountHBase() throws ClassNotFoundException, IOException,
+            InterruptedException {
 
-        List<String> pagesList = new ArrayList<String>();
+        List<String> inputPathList = new ArrayList<String>();
+        List<String> outputPathList = new ArrayList<String>();
 
-        JobManager jobManager = new JobManager();
-        Job sampleJob = jobManager.createJob();
+        List<File> fileList = DirectoryScanner.getFileList("/opt/dataset");
 
-        try {
+        for (int i = 0; i < fileList.size(); i++) {
 
-            System.out.println(sampleJob.waitForCompletion(true));
+            inputPathList.add(fileList.get(i).getAbsolutePath());
+            outputPathList.add("/opt/dataset/tmp/result_" + i);
 
-        } catch (IOException | ClassNotFoundException | InterruptedException e) {
-
-            e.printStackTrace();
         }
 
-        return pagesList;
+        JobManager jobManager = new JobManager();
+
+        for (int i = 0; i < inputPathList.size(); i++) {
+
+            System.out.println("job_" + inputPathList.get(i) + " called");
+            jobManager.createJob(inputPathList.get(i), outputPathList.get(i));
+        }
+
     }
 
 }

@@ -21,29 +21,32 @@ public class JobManager {
     private static final String PDFBOX_PATH = "/lib/pdfbox-1.8.10.jar";
     private static final String FONTBOX_PATH = "/lib/fontbox-1.8.10.jar";
 
-    private static final String PDFBOX_PATH2 = "/home/aditya/apps-store/pdfbox-1.8.10/pdfbox-1.8.10.jar";
-    private static final String FONTBOX_PATH2 = "/home/aditya/apps-store/pdfbox-1.8.10/fontbox-1.8.10.jar";
+    private static final String PDFBOX_PATH2 = "/home/aditya/apps-store/pdfbox-lib/pdfbox-2.0.0-RC3.jar";
+    private static final String FONTBOX_PATH2 = "/home/aditya/apps-store/pdfbox-lib/fontbox-2.0.0-RC3.jar";
 
     private Job job;
     private String jobName = null;
     private String inputPath = null;
     public static List<Keyword> keywordList;
+    private static int fileCounter = 0;
 
     static {
 
         keywordList = new ArrayList<Keyword>();
+        fileCounter++;
     }
 
-    public Job createJob() throws ClassNotFoundException, IOException,
-            InterruptedException {
+    public void createJob(String inputPath, String outputPath)
+            throws ClassNotFoundException, IOException, InterruptedException {
 
         MetadataManager metadataManager = new MetadataManager();
 
         Configuration configuration = new Configuration();
+        String jobName = "job_" + inputPath;
 
         try {
 
-            job = Job.getInstance(configuration, "WordCount");
+            job = Job.getInstance(configuration, jobName);
             job.addFileToClassPath(new Path(PDFBOX_PATH2));
             job.addFileToClassPath(new Path(FONTBOX_PATH2));
             job.setJarByClass(this.getClass());
@@ -54,10 +57,8 @@ public class JobManager {
             job.setOutputKeyClass(Text.class);
             job.setOutputValueClass(LongWritable.class);
 
-            FileInputFormat.setInputPaths(job,
-                    new Path("/opt/dataset/test.pdf"));
-            FileOutputFormat.setOutputPath(job,
-                    new Path("/opt/dataset/results"));
+            FileInputFormat.setInputPaths(job, new Path(inputPath));
+            FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
             job.setMapperClass(PdfMapper.class);
             job.setCombinerClass(PdfReducer.class);
@@ -70,15 +71,14 @@ public class JobManager {
 
         if (job.waitForCompletion(true)) {
 
-            FileMetadata fileMetadata = new FileMetadata("1",
-                    "Linux Kernel Development.pdf",
-                    "/opt/dataset/Linux Kernel Development.pdf", "50", "600",
-                    "programming", keywordList);
+            FileMetadata fileMetadata = new FileMetadata(
+                    String.valueOf(fileCounter), inputPath, inputPath, "50",
+                    "600", "programming", keywordList);
 
             metadataManager.addNewFileMetadata(fileMetadata);
-            System.out.println("Completed");
+            System.out.println(jobName + "completed");
+            keywordList = new ArrayList<Keyword>();
+            fileCounter++;
         }
-
-        return job;
     }
 }

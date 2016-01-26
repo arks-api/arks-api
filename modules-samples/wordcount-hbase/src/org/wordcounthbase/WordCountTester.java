@@ -8,7 +8,6 @@ public class WordCountTester {
             IOException, InterruptedException {
 
         WordCount wc = new WordCount();
-        // contentSearchHadoop.searchPages();
         wc.wordCountHBase();
     }
 
