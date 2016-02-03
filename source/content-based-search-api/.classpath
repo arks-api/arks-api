@@ -3,8 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hbase-libs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/pdfbox-2.0.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/research-paper-parser"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spark-libs"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/pdfbox-lib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

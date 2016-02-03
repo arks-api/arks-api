@@ -13,72 +13,65 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.cbsa.api.controller.metadata.MetadataManager;
+import org.cbsa.api.dep.Dependencies;
 import org.cbsa.api.model.FileMetadata;
 import org.cbsa.api.model.Keyword;
 
 public class JobManager {
 
-    private static final String PDFBOX_PATH = "/lib/pdfbox-1.8.10.jar";
-    private static final String FONTBOX_PATH = "/lib/fontbox-1.8.10.jar";
+	private Job job;
+	public static List<Keyword> keywordList;
+	private static int fileCounter = 0;
 
-    private static final String PDFBOX_PATH2 = "/home/aditya/apps-store/pdfbox-lib/pdfbox-2.0.0-RC3.jar";
-    private static final String FONTBOX_PATH2 = "/home/aditya/apps-store/pdfbox-lib/fontbox-2.0.0-RC3.jar";
+	static {
 
-    private Job job;
-    private String jobName = null;
-    private String inputPath = null;
-    public static List<Keyword> keywordList;
-    private static int fileCounter = 0;
+		keywordList = new ArrayList<Keyword>();
+		fileCounter++;
+	}
 
-    static {
+	public void createJob(String inputPath, String outputPath)
+			throws ClassNotFoundException, IOException, InterruptedException {
 
-        keywordList = new ArrayList<Keyword>();
-        fileCounter++;
-    }
+		MetadataManager metadataManager = new MetadataManager();
 
-    public void createJob(String inputPath, String outputPath)
-            throws ClassNotFoundException, IOException, InterruptedException {
+		Configuration configuration = new Configuration();
+		String jobName = "job_" + inputPath;
 
-        MetadataManager metadataManager = new MetadataManager();
+		try {
 
-        Configuration configuration = new Configuration();
-        String jobName = "job_" + inputPath;
+			job = Job.getInstance(configuration, jobName);
+			// job.addFileToClassPath(new Path(Dependencies.PDFBOX_PATH));
+			// job.addFileToClassPath(new Path(Dependencies.FONTBOX_PATH));
+			job.setJarByClass(this.getClass());
 
-        try {
+			job.setInputFormatClass(PdfInputFormat.class);
+			job.setOutputFormatClass(TextOutputFormat.class);
 
-            job = Job.getInstance(configuration, jobName);
-            job.addFileToClassPath(new Path(PDFBOX_PATH2));
-            job.addFileToClassPath(new Path(FONTBOX_PATH2));
-            job.setJarByClass(this.getClass());
+			job.setOutputKeyClass(Text.class);
+			job.setOutputValueClass(LongWritable.class);
 
-            job.setInputFormatClass(PdfInputFormat.class);
-            job.setOutputFormatClass(TextOutputFormat.class);
+			FileInputFormat.setInputPaths(job, new Path(inputPath));
+			FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
-            job.setOutputKeyClass(Text.class);
-            job.setOutputValueClass(LongWritable.class);
+			job.setMapperClass(PdfMapper.class);
+			job.setCombinerClass(PdfReducer.class);
+			job.setReducerClass(PdfReducer.class);
 
-            FileInputFormat.setInputPaths(job, new Path(inputPath));
-            FileOutputFormat.setOutputPath(job, new Path(outputPath));
+		} catch (IOException e) {
 
-            job.setMapperClass(PdfMapper.class);
-            job.setCombinerClass(PdfReducer.class);
-            job.setReducerClass(PdfReducer.class);
+			e.printStackTrace();
+		}
 
-        } catch (IOException e) {
+		if (job.waitForCompletion(true)) {
 
-            e.printStackTrace();
-        }
+			FileMetadata fileMetadata = new FileMetadata(
+					String.valueOf(fileCounter), inputPath, inputPath, "50",
+					"600", "programming", keywordList);
 
-        if (job.waitForCompletion(true)) {
-
-            FileMetadata fileMetadata = new FileMetadata(
-                    String.valueOf(fileCounter), inputPath, inputPath, "50",
-                    "600", "programming", keywordList);
-
-            metadataManager.addNewFileMetadata(fileMetadata);
-            System.out.println(jobName + "completed");
-            keywordList = new ArrayList<Keyword>();
-            fileCounter++;
-        }
-    }
+			metadataManager.addNewFileMetadata(fileMetadata);
+			System.out.println(jobName + "completed");
+			keywordList = new ArrayList<Keyword>();
+			fileCounter++;
+		}
+	}
 }

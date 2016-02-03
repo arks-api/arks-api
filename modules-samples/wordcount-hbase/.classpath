@@ -2,10 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hadoop-commons"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hadoop-commons-lib"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hadoop-mapreduce"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Content Based Search API"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/pdfbox-2.0.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hadoop-common"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hadoop-common-lib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hbase-libs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/map-reduce"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

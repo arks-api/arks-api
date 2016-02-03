@@ -7,24 +7,26 @@ import java.util.List;
 import org.cbsa.api.controller.search.PageByPageSearch;
 import org.cbsa.api.model.ResultCard;
 
-public class ContextSearchTester {
+public class ContentSearchTester {
 
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-        PageByPageSearch pageByPageSearch = new PageByPageSearch();
+		PageByPageSearch pageByPageSearch = new PageByPageSearch();
 
-        List<String> searchKeywordList = new ArrayList<String>();
-        searchKeywordList.add("POSIX");
+		List<String> searchKeywordList = new ArrayList<String>();
+		searchKeywordList.add("imagebutton");
 
-        List<ResultCard> resultCardList;
-        resultCardList = pageByPageSearch.findpages(
-                "/opt/dataset/Linux Kernel Development.pdf", searchKeywordList);
+		List<ResultCard> resultCardList;
+		resultCardList = pageByPageSearch
+				.findpages(
+						"/opt/dataset/Android Tutorial -  - Tutorials Point.pdf",
+						searchKeywordList);
 
-        System.out.println("got list");
+		System.out.println("got list");
 
-        for (ResultCard card : resultCardList) {
-            System.out.println(card.getPageNumber());
-        }
+		for (ResultCard card : resultCardList) {
+			System.out.println(card.getPageNumber());
+		}
 
-    }
+	}
 }

@@ -13,7 +13,7 @@ public class MetadataReader {
         MetadataManager metadataManager = new MetadataManager();
 
         List<String> keywordsList = new ArrayList<String>();
-        keywordsList.add("java");
+        keywordsList.add("blogging");
         // keywordsList.add("");
 
         List<String> result = metadataManager
