@@ -20,7 +20,7 @@ public class ContentBasedSearch {
      * @param keyword
      * @return {@link Document}
      */
-    public List<Document> searchForFiles(String keyword) {
+    public List<Document> searchForPages(String keyword) {
 
         List<Document> documentList = null;
 

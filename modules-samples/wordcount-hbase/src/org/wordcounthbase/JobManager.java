@@ -13,7 +13,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.cbsa.api.controller.metadata.MetadataManager;
-import org.cbsa.api.dep.Dependencies;
 import org.cbsa.api.model.FileMetadata;
 import org.cbsa.api.model.Keyword;
 

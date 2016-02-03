@@ -1,4 +1,4 @@
-package org.cbsa.testing.model;
+package org.cbsa.testing.search;
 
 import java.io.IOException;
 import java.util.ArrayList;

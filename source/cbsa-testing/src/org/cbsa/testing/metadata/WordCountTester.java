@@ -1,4 +1,4 @@
-package org.cbsa.testing.model;
+package org.cbsa.testing.metadata;
 
 import java.io.IOException;
 

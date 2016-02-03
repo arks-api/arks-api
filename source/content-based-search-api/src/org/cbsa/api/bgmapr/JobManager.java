@@ -13,7 +13,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.cbsa.api.controller.metadata.MetadataManager;
-import org.cbsa.api.dep.Dependencies;
 import org.cbsa.api.model.FileMetadata;
 import org.cbsa.api.model.Keyword;
 
@@ -40,8 +39,8 @@ public class JobManager {
 		try {
 
 			job = Job.getInstance(configuration, jobName);
-			// job.addFileToClassPath(new Path(Dependencies.PDFBOX_PATH));
-			// job.addFileToClassPath(new Path(Dependencies.FONTBOX_PATH));
+			// job.addFileToClassPath(new Path(ConfigCBSI.getPdfboxPath()));
+			// job.addFileToClassPath(new Path(ConfigCBSI.getFontboxPath()));
 			job.setJarByClass(this.getClass());
 
 			job.setInputFormatClass(PdfInputFormat.class);
