@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -17,6 +19,7 @@ import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.cbsa.api.bgmapr.WordCount;
 import org.cbsa.api.model.FileMetadata;
 import org.cbsa.api.model.Keyword;
 import org.cbsa.api.model.KeywordDetails;
@@ -24,6 +27,8 @@ import org.cbsa.api.model.MetaSchama;
 
 @SuppressWarnings("deprecation")
 public class MetadataManager {
+
+    private final Logger logger = Logger.getLogger(WordCount.class.getName());
 
     private Configuration config;
     private HBaseAdmin admin;
@@ -38,9 +43,11 @@ public class MetadataManager {
      */
     public MetadataManager() {
 
+        logger.setLevel(Level.INFO);
+
         if (!MetadataTables.createTables()) {
 
-            System.err.println("Metadata Table Creation Failed");
+            logger.info("metadata table creation failed");
             return;
         }
 
@@ -131,10 +138,10 @@ public class MetadataManager {
         } catch (IOException e) {
 
             e.printStackTrace();
-            System.err.println("File Metadata Insertion Failed");
+            logger.info("file metadata insertion failed");
         }
 
-        System.out.println("New File Metadata Added");
+        logger.info("file metadata insertion successful");
 
     }
 

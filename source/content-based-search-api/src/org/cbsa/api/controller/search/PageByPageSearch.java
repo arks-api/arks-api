@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.io.RandomAccessBuffer;
@@ -12,10 +14,18 @@ import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.cbsa.api.conf.ConfigCBSI;
 import org.cbsa.api.model.PageCard;
 import org.cbsa.api.model.ResultCard;
 
 public class PageByPageSearch {
+
+    private final Logger logger = Logger.getLogger(PageByPageSearch.class
+            .getName());
+
+    public PageByPageSearch() {
+        logger.setLevel(Level.INFO);
+    }
 
     public List<ResultCard> findpages(String path,
             List<String> searchKeywordList) throws IOException {
@@ -66,9 +76,9 @@ public class PageByPageSearch {
             finalDocument.addPage(page);
         }
 
-        finalDocument.save("/opt/dataset/results/final.pdf");
+        finalDocument.save(ConfigCBSI.getResultPdfPath());
         finalDocument.close();
-        System.out.println("Saved");
+        logger.info("Saved");
 
         return list;
 

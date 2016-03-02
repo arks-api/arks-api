@@ -3,6 +3,8 @@ package org.cbsa.api.bgmapr;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -18,59 +20,64 @@ import org.cbsa.api.model.Keyword;
 
 public class JobManager {
 
-	private Job job;
-	public static List<Keyword> keywordList;
-	private static int fileCounter = 0;
+    private final Logger logger = Logger.getLogger(JobManager.class.getName());
+    private Job job;
+    public static List<Keyword> keywordList;
+    private static int fileCounter = 0;
 
-	static {
+    static {
 
-		keywordList = new ArrayList<Keyword>();
-		fileCounter++;
-	}
+        keywordList = new ArrayList<Keyword>();
+        fileCounter++;
+    }
 
-	public void createJob(String inputPath, String outputPath)
-			throws ClassNotFoundException, IOException, InterruptedException {
+    public JobManager() {
+        logger.setLevel(Level.INFO);
+    }
 
-		MetadataManager metadataManager = new MetadataManager();
+    public void createJob(String inputPath, String outputPath)
+            throws ClassNotFoundException, IOException, InterruptedException {
 
-		Configuration configuration = new Configuration();
-		String jobName = "job_" + inputPath;
+        MetadataManager metadataManager = new MetadataManager();
 
-		try {
+        Configuration configuration = new Configuration();
+        String jobName = "job_" + inputPath;
 
-			job = Job.getInstance(configuration, jobName);
-			// job.addFileToClassPath(new Path(ConfigCBSI.getPdfboxPath()));
-			// job.addFileToClassPath(new Path(ConfigCBSI.getFontboxPath()));
-			job.setJarByClass(this.getClass());
+        try {
 
-			job.setInputFormatClass(PdfInputFormat.class);
-			job.setOutputFormatClass(TextOutputFormat.class);
+            job = Job.getInstance(configuration, jobName);
+            // job.addFileToClassPath(new Path(ConfigCBSI.getPdfboxPath()));
+            // job.addFileToClassPath(new Path(ConfigCBSI.getFontboxPath()));
+            job.setJarByClass(this.getClass());
 
-			job.setOutputKeyClass(Text.class);
-			job.setOutputValueClass(LongWritable.class);
+            job.setInputFormatClass(PdfInputFormat.class);
+            job.setOutputFormatClass(TextOutputFormat.class);
 
-			FileInputFormat.setInputPaths(job, new Path(inputPath));
-			FileOutputFormat.setOutputPath(job, new Path(outputPath));
+            job.setOutputKeyClass(Text.class);
+            job.setOutputValueClass(LongWritable.class);
 
-			job.setMapperClass(PdfMapper.class);
-			job.setCombinerClass(PdfReducer.class);
-			job.setReducerClass(PdfReducer.class);
+            FileInputFormat.setInputPaths(job, new Path(inputPath));
+            FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
-		} catch (IOException e) {
+            job.setMapperClass(PdfMapper.class);
+            job.setCombinerClass(PdfReducer.class);
+            job.setReducerClass(PdfReducer.class);
 
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
 
-		if (job.waitForCompletion(true)) {
+            e.printStackTrace();
+        }
 
-			FileMetadata fileMetadata = new FileMetadata(
-					String.valueOf(fileCounter), inputPath, inputPath, "50",
-					"600", "programming", keywordList);
+        if (job.waitForCompletion(true)) {
 
-			metadataManager.addNewFileMetadata(fileMetadata);
-			System.out.println(jobName + "completed");
-			keywordList = new ArrayList<Keyword>();
-			fileCounter++;
-		}
-	}
+            FileMetadata fileMetadata = new FileMetadata(
+                    String.valueOf(fileCounter), inputPath, inputPath, "50",
+                    "600", "programming", keywordList);
+
+            metadataManager.addNewFileMetadata(fileMetadata);
+            logger.info(jobName + " finished");
+            keywordList = new ArrayList<Keyword>();
+            fileCounter++;
+        }
+    }
 }
