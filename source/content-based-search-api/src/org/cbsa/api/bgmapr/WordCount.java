@@ -1,6 +1,5 @@
 package org.cbsa.api.bgmapr;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +22,12 @@ public class WordCount {
         List<String> inputPathList = new ArrayList<String>();
         List<String> outputPathList = new ArrayList<String>();
 
-        List<File> fileList = DirectoryScanner.getFileList(ConfigCBSI
+        List<String> fileList = DirectoryScanner.getFileList(ConfigCBSI
                 .getDatasetPath());
 
         for (int i = 0; i < fileList.size(); i++) {
 
-            inputPathList.add(fileList.get(i).getAbsolutePath());
+            inputPathList.add(fileList.get(i));
             outputPathList.add(ConfigCBSI.getWcResultPath() + i);
 
         }
