@@ -27,10 +27,10 @@ public class PdfMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
 
         String text = value.toString();
         String[] words = text.replaceAll("\\p{Punct}|\\d", "").split(" ");
-        for (String i : words) {
-            if (!i.equals("") && !i.equals(null)
-                    && !Stopwords.genStopWordsSet().contains(i)) {
-                word.set(i);
+        for (String singleWord : words) {
+            if (!singleWord.equals("") && !singleWord.equals(null)
+                    && !Stopwords.genStopWordsSet().contains(singleWord)) {
+                word.set(singleWord.toLowerCase());
                 context.write(word, one);
             }
         }
