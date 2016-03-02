@@ -14,7 +14,7 @@ public class ContentSearchTester {
         PageByPageSearch pageByPageSearch = new PageByPageSearch();
 
         List<String> searchKeywordList = new ArrayList<String>();
-        searchKeywordList.add("imagebutton");
+        searchKeywordList.add("ImageButton");
 
         List<SearchResult> resultCardList;
         resultCardList = pageByPageSearch.findpages(

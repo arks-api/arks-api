@@ -54,7 +54,8 @@ public class PageByPageSearch {
 
             for (String keyword : searchKeywordList) {
 
-                if (!reader.getText(doc).contains(keyword)) {
+                if (!reader.getText(doc).toLowerCase()
+                        .contains(keyword.toLowerCase())) {
                     hasKeywords = false;
                     break;
                 }
