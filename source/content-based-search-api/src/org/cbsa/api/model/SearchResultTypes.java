@@ -1,7 +1,7 @@
 package org.cbsa.api.model;
 
-public class ResultCardTypes {
+public class SearchResultTypes {
 
-    public static final String PAGE_CARD = "page";
-    public static final String PARAGRAPH_CARD = "paragraph";
+    public static final String PAGE_SEARCH = "page";
+    public static final String PARAGRAPH_SEARCH = "paragraph";
 }

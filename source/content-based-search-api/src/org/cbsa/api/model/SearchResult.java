@@ -1,18 +1,18 @@
 package org.cbsa.api.model;
 
-public abstract class ResultCard {
+public abstract class SearchResult {
 
-    private String cardType;
+    private String resultType;
     private String filePath;
     private String fileContent;
     private int pageNumber;
 
-    public String getCardType() {
-        return cardType;
+    public String getresultType() {
+        return resultType;
     }
 
-    public void setCardType(String cardType) {
-        this.cardType = cardType;
+    public void setresultType(String resultType) {
+        this.resultType = resultType;
     }
 
     public String getFilePath() {

@@ -1,8 +1,8 @@
 package org.cbsa.api.model;
 
-public class ParagraphCard extends ResultCard {
+public class ParagraphResult extends SearchResult {
 
-    public ParagraphCard() {
-        setCardType(ResultCardTypes.PARAGRAPH_CARD);
+    public ParagraphResult() {
+        setresultType(SearchResultTypes.PARAGRAPH_SEARCH);
     }
 }

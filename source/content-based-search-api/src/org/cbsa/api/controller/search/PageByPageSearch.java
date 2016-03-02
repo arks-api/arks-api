@@ -15,8 +15,8 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.cbsa.api.conf.ConfigCBSI;
-import org.cbsa.api.model.PageCard;
-import org.cbsa.api.model.ResultCard;
+import org.cbsa.api.model.PageResult;
+import org.cbsa.api.model.SearchResult;
 
 public class PageByPageSearch {
 
@@ -27,7 +27,7 @@ public class PageByPageSearch {
         logger.setLevel(Level.INFO);
     }
 
-    public List<ResultCard> findpages(String path,
+    public List<SearchResult> findpages(String path,
             List<String> searchKeywordList) throws IOException {
 
         int i; // page no.
@@ -45,7 +45,7 @@ public class PageByPageSearch {
         PDFTextStripper reader = new PDFTextStripper();
         PDDocument doc = new PDDocument(cosDoc);
 
-        List<ResultCard> list = new ArrayList<ResultCard>();
+        List<SearchResult> list = new ArrayList<SearchResult>();
 
         for (i = 0; i <= doc.getNumberOfPages(); i++) {
             reader.setStartPage(i);
@@ -62,7 +62,7 @@ public class PageByPageSearch {
 
             if (hasKeywords) {
 
-                ResultCard result = new PageCard();
+                SearchResult result = new PageResult();
                 result.setFileContent(reader.getText(doc));
                 result.setFilePath(path);
                 result.setPageNumber(i);

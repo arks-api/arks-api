@@ -1,8 +1,8 @@
 package org.cbsa.api.model;
 
-public class PageCard extends ResultCard {
+public class PageResult extends SearchResult {
 
-    public PageCard() {
-        setCardType(ResultCardTypes.PAGE_CARD);
+    public PageResult() {
+        setresultType(SearchResultTypes.PAGE_SEARCH);
     }
 }

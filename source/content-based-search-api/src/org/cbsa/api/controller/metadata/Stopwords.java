@@ -1,5 +1,8 @@
 package org.cbsa.api.controller.metadata;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Stopwords {
 
     public final static String[] STOPWORDS1 = { "a", "a's", "able", "about",
@@ -141,4 +144,19 @@ public class Stopwords {
             "Won’t", "Would", "Wouldn’t", "You", "You’d", "You’ll", "You’re",
             "You’ve", "Your", "Yours", "Yourself", "Yourselves", "°", "―", "“",
             "”" };
+
+    public static Set<String> genStopWordsSet() {
+
+        Set<String> set = new HashSet<>();
+
+        for (String i : Stopwords.STOPWORDS1) {
+            set.add(i);
+        }
+
+        for (String i : Stopwords.STOPWORDS2) {
+            set.add(i);
+        }
+
+        return set;
+    }
 }
