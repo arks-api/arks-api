@@ -1,37 +1,101 @@
 package org.cbsa.api.conf;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
+
 public class ConfigCBSI {
 
-    private static final String DATASET_PATH = "/opt/dataset";
-    private static final String TEMP_PATH = "/opt/tmp";
-    private static final String WC_RESULT_PATH = TEMP_PATH + "/result_";
-    private static final String RESULT_PDF_PATH = "/opt/dataset/results/final.pdf";
+    private static final String DATASET_PATH = "dataset_path";
+    private static final String TEMP_PATH = "temp_path";
+    private static final String WC_RESULT_PATH = "wc_result_path";
+    private static final String RESULT_PDF_PATH = "result_pdf_path";
 
-    private static final String PDFBOX_PATH = "/lib/pdfbox-2.0.0-RC3.jar";
-    private static final String FONTBOX_PATH = "/lib/fontbox-2.0.0-RC3.jar";
+    private static final String PDFBOX_PATH = "pdfbox_path";
+    private static final String FONTBOX_PATH = "fontbox_path";
+
+    private static final String STORAGE_PATH = "storage_mode";
+    private static final String ONLINE_MODE = "online_mode";
 
     public static String getPdfboxPath() {
-        return PDFBOX_PATH;
+
+        try {
+
+            return XMLConfig.readfromXml(PDFBOX_PATH);
+
+        } catch (XPathExpressionException | ParserConfigurationException
+                | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String getFontboxPath() {
-        return FONTBOX_PATH;
+
+        try {
+
+            return XMLConfig.readfromXml(FONTBOX_PATH);
+
+        } catch (XPathExpressionException | ParserConfigurationException
+                | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String getDatasetPath() {
-        return DATASET_PATH;
+
+        try {
+
+            return XMLConfig.readfromXml(DATASET_PATH);
+
+        } catch (XPathExpressionException | ParserConfigurationException
+                | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String getTempPath() {
-        return TEMP_PATH;
+
+        try {
+
+            return XMLConfig.readfromXml(TEMP_PATH);
+
+        } catch (XPathExpressionException | ParserConfigurationException
+                | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String getWcResultPath() {
-        return WC_RESULT_PATH;
+
+        try {
+
+            return XMLConfig.readfromXml(WC_RESULT_PATH);
+
+        } catch (XPathExpressionException | ParserConfigurationException
+                | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String getResultPdfPath() {
-        return RESULT_PDF_PATH;
+
+        try {
+
+            return XMLConfig.readfromXml(RESULT_PDF_PATH);
+
+        } catch (XPathExpressionException | ParserConfigurationException
+                | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

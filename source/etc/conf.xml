@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property>
+		<name>dataset_path</name>
+		<value>/opt/dataset</value>
+	</property>
+
+	<property>
+		<name>temp_path</name>
+		<value>/opt/tmp</value>
+	</property>
+
+	<property>
+		<name>wc_result_path</name>
+		<value>/opt/tmp/result_</value>
+	</property>
+
+	<property>
+		<name>pdfbox_path</name>
+		<value>/lib/pdfbox-2.0.0-RC3.jar</value>
+	</property>
+
+	<property>
+		<name>fontbox_path</name>
+		<value>/lib/fontbox-2.0.0-RC3.jar</value>
+	</property>
+
+	<property>
+		<name>result_pdf_path</name>
+		<value>/opt/dataset/results/final.pdf</value>
+	</property>
+
+	<property>
+		<name>storage_mode</name>
+		<value>local</value>
+	</property>
+
+	<property>
+		<name>online_mode</name>
+		<value>false</value>
+	</property>
+
+	<property>
+		<name>version</name>
+		<value>v1.0</value>
+	</property>
+
+</configuration>
