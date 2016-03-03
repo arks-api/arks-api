@@ -79,7 +79,7 @@ public class PageByPageSearch {
 
         finalDocument.save(ConfigCBSI.getResultPdfPath());
         finalDocument.close();
-        logger.info("Saved");
+        logger.info("Result Saved");
 
         return list;
 

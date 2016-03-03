@@ -7,6 +7,7 @@ public class DirectoryScannerTester {
 
     public static void main(String[] args) {
 
-        DirectoryScanner.getFileList(ConfigCBSI.getDatasetPath());
+        System.out.println(DirectoryScanner.getFileList(ConfigCBSI
+                .getDatasetPath()));
     }
 }

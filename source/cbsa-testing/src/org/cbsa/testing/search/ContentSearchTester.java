@@ -14,12 +14,11 @@ public class ContentSearchTester {
         PageByPageSearch pageByPageSearch = new PageByPageSearch();
 
         List<String> searchKeywordList = new ArrayList<String>();
-        searchKeywordList.add("ImageButton");
+        searchKeywordList.add("primary key");
 
         List<SearchResult> resultCardList;
         resultCardList = pageByPageSearch.findpages(
-                "/opt/dataset/Android Tutorial -  - Tutorials Point.pdf",
-                searchKeywordList);
+                "/opt/dataset/MySQL Tutorials Point.pdf", searchKeywordList);
 
         System.out.println("got list");
 

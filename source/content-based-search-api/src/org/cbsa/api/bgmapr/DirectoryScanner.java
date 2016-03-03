@@ -1,31 +1,45 @@
 package org.cbsa.api.bgmapr;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileStatus;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.FileUtil;
-import org.apache.hadoop.fs.Path;
 
 public class DirectoryScanner {
 
+    private static List<File> fileList;
+
+    // private static List<File> fileList = new ArrayList<String>();
+
+    private static List<File> getFiles(String directoryPath) {
+        fileList = new ArrayList<File>();
+        addTree(new File(directoryPath), fileList);
+        return fileList;
+    }
+
+    private static void addTree(File file, Collection<File> all) {
+        File[] children = file.listFiles();
+        if (children != null) {
+            for (File child : children) {
+                all.add(child);
+                addTree(child, all);
+            }
+        }
+    }
+
+    public static List<String> getFileList(String directoryPath) {
+        List<String> filePaths = new ArrayList<String>();
+
+        getFiles(directoryPath);
+
+        for (File file : fileList) {
+            filePaths.add(file.getAbsolutePath());
+        }
+
+        return filePaths;
+    }
+
     /*
-     * public static List<File> getFileList(String directoryPath) { List<File>
-     * fileList = new ArrayList<File>(); addTree(new File(directoryPath),
-     * fileList); return fileList; }
-     * 
-     * private static void addTree(File file, Collection<File> all) { File[]
-     * children = file.listFiles(); if (children != null) { for (File child :
-     * children) { all.add(child); addTree(child, all); } } }
-     */
-
-    private static List<String> fileList = new ArrayList<String>();
-
     private static void readFilesRecursively(String directoryPath) {
 
         FileSystem hdfs = null;
@@ -60,5 +74,5 @@ public class DirectoryScanner {
         readFilesRecursively(directoryPath);
 
         return fileList;
-    }
+    }*/
 }
