@@ -7,8 +7,10 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.cbsa.api.conf.ConfigCBSI;
 import org.cbsa.api.controller.metadata.MetadataManager;
 import org.cbsa.api.controller.search.PageByPageSearch;
+import org.cbsa.api.controller.search.RelatedWordScanner;
 import org.cbsa.api.model.Document;
 import org.cbsa.api.model.Paragraph;
 import org.cbsa.api.model.SearchResult;
@@ -43,6 +45,14 @@ public class ContentBasedSearch {
         while (keywordTokenizer.hasMoreTokens()) {
             keywordsList.add(keywordTokenizer.nextToken());
         }
+
+        // Check for online mode
+        if (ConfigCBSI.getOnlineMode()) {
+            keywordsList
+                    .addAll(RelatedWordScanner.getRelatedWords(searchQuery));
+        }
+
+        logger.info("Total Words " + keywordsList);
 
         List<String> result = null;
         try {

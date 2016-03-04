@@ -111,4 +111,18 @@ public class ConfigCBSI {
         return null;
     }
 
+    public static boolean getOnlineMode() {
+
+        try {
+
+            if (XMLConfig.readfromXml(ONLINE_MODE).equals("true")) {
+                return true;
+            }
+
+        } catch (XPathExpressionException | ParserConfigurationException
+                | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
