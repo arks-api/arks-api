@@ -1,0 +1,11 @@
+Enter the search: 
+the world is flat
+keywords before filtering are : [is, flat, the, world]
+
+
+after filtering list is : [flat, world]
+
+
+added to list :[flatcar, flatbed, flat tire, apartment, box, champaign, field, freight car, housing, living accommodations, lodging, musical notation, plain, pneumatic tire, pneumatic tyre, scene, scenery, level, plane, categoric, categorical, unconditional, prostrate, compressed, bland, flavorless, flavourless, insipid, savorless, savourless, vapid, monotone, monotonic, monotonous, two-dimensional, 2-dimensional, mat, matt, matte, matted, fixed, universe, existence, creation, cosmos, macrocosm, domain, reality, Earth, globe, populace, public, worldly concern, earthly concern, human race, humanity, humankind, human beings, humans, mankind, man, class, concern, experience, group, grouping, homo, human, human being, natural object, part, people, piece, social class, socio-economic class, terrestrial planet, global, planetary, worldwide, world-wide]
+
+
