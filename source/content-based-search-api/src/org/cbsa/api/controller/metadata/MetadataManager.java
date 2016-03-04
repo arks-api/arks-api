@@ -3,8 +3,8 @@ package org.cbsa.api.controller.metadata;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -316,7 +316,7 @@ public class MetadataManager {
 
         // get fileID of selected keywords list
 
-        Set<String> uniqueFileList = new HashSet<String>();
+        Set<String> uniqueFileList = new LinkedHashSet<String>();
 
         for (KeywordDetails keywordDetails : keywordDetailsList) {
 
