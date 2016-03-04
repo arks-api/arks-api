@@ -2,6 +2,7 @@ package org.cbsa.api.controller.metadata;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.logging.Logger;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.KeyValue;
+import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Put;
@@ -209,6 +211,8 @@ public class MetadataManager {
         Scan scanFileKeywords = null;
         ResultScanner scannerFileInfo = null;
         ResultScanner scannerFileKeywords = null;
+        Get filePathGetter = null;
+        Result filePathResult = null;
 
         // retrieve keywords list
 
@@ -287,13 +291,28 @@ public class MetadataManager {
             }
         }
 
-        // System.out.println("After Filtering");
-        // for (KeywordDetails keywordDetails : keywordDetailsList) {
-        //
-        // System.out.println(keywordDetails.getFileID() + " "
-        // + keywordDetails.getFrequency() + " "
-        // + keywordDetails.getKeyword());
-        // }
+        /*
+        System.out.println("After Filtering");
+        for (KeywordDetails keywordDetails : keywordDetailsList) {
+
+            System.out.println(keywordDetails.getFileID() + " "
+                    + keywordDetails.getFrequency() + " "
+                    + keywordDetails.getKeyword());
+        }
+        */
+
+        // Sort According to frequency of keywords
+        Collections.sort(keywordDetailsList, new FrequencyComparator());
+
+        /*
+        System.out.println("After Sorting");
+        for (KeywordDetails keywordDetails : keywordDetailsList) {
+
+            System.out.println(keywordDetails.getFileID() + " "
+                    + keywordDetails.getFrequency() + " "
+                    + keywordDetails.getKeyword());
+        }
+        */
 
         // get fileID of selected keywords list
 
@@ -304,13 +323,29 @@ public class MetadataManager {
             uniqueFileList.add(keywordDetails.getFileID());
         }
 
-        // for (String fileID : uniqueFileList) {
-        //
-        // System.out.println(uniqueFileList);
-        // }
+        /*
+        for (String fileID : uniqueFileList) {
+
+            System.out.println(fileID);
+        }
+        */
 
         // save paths of documents with those fileID
 
+        for (String fileID : uniqueFileList) {
+
+            filePathGetter = new Get(Bytes.toBytes(fileID));
+            filePathResult = fileInfoTable.get(filePathGetter);
+
+            String tempPath = Bytes.toString(filePathResult.getValue(
+                    Bytes.toBytes(MetaSchama.CF_GENERAL),
+                    Bytes.toBytes(MetaSchama.CO_FILE_PATH)));
+
+            documentPathList.add(tempPath);
+        }
+
+        // save paths of documents with those fileID
+        /*
         scanFileInfo = new Scan();
         scanFileInfo.addFamily(Bytes.toBytes(MetaSchama.CF_FILE_ID));
         scanFileInfo.addColumn(Bytes.toBytes(MetaSchama.CF_GENERAL),
@@ -344,6 +379,8 @@ public class MetadataManager {
         }
 
         scannerFileInfo.close();
+        */
+
         scannerFileKeywords.close();
 
         return documentPathList;

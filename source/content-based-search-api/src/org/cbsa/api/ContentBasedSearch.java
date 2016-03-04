@@ -51,22 +51,19 @@ public class ContentBasedSearch {
             e.printStackTrace();
         }
 
-        for (String filePath : result) {
-
-            logger.info(filePath);
-        }
-
         PageByPageSearch pageByPageSearch = new PageByPageSearch();
         List<String> searchKeywordList = keywordsList;
 
+        int counter = 0;
         List<SearchResult> searchResultList = null;
         try {
 
             for (String filePath : result) {
 
-                System.out.println(filePath);
+                logger.info(filePath);
                 searchResultList = pageByPageSearch.findpages(filePath,
-                        searchKeywordList);
+                        searchKeywordList, counter);
+                counter++;
             }
 
         } catch (IOException e) {

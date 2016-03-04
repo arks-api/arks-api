@@ -28,7 +28,7 @@
 
 	<property>
 		<name>result_pdf_path</name>
-		<value>/opt/dataset/results/final.pdf</value>
+		<value>/opt/dataset/results/final_</value>
 	</property>
 
 	<property>

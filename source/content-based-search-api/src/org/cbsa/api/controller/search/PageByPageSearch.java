@@ -28,7 +28,7 @@ public class PageByPageSearch {
     }
 
     public List<SearchResult> findpages(String path,
-            List<String> searchKeywordList) throws IOException {
+            List<String> searchKeywordList, int fileCounter) throws IOException {
 
         int i; // page no.
         boolean hasKeywords = false;
@@ -77,7 +77,8 @@ public class PageByPageSearch {
             finalDocument.addPage(page);
         }
 
-        finalDocument.save(ConfigCBSI.getResultPdfPath());
+        finalDocument
+                .save(ConfigCBSI.getResultPdfPath() + fileCounter + ".pdf");
         finalDocument.close();
         logger.info("Result Saved");
 
