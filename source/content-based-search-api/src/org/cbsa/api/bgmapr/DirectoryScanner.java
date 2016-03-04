@@ -1,15 +1,34 @@
 package org.cbsa.api.bgmapr;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.FileUtil;
+import org.apache.hadoop.fs.Path;
+import org.cbsa.api.conf.ConfigCBSI;
+import org.cbsa.api.conf.StorageModes;
 
 public class DirectoryScanner {
 
+    private static final Logger logger = Logger
+            .getLogger(DirectoryScanner.class.getName());
     private static List<File> fileList;
+    private static List<String> filePaths = new ArrayList<String>();
 
-    // private static List<File> fileList = new ArrayList<String>();
+    static {
+
+        logger.setLevel(Level.INFO);
+    }
 
     private static List<File> getFiles(String directoryPath) {
         fileList = new ArrayList<File>();
@@ -28,18 +47,26 @@ public class DirectoryScanner {
     }
 
     public static List<String> getFileList(String directoryPath) {
-        List<String> filePaths = new ArrayList<String>();
 
-        getFiles(directoryPath);
+        if (ConfigCBSI.getStorageMode().equals(StorageModes.LOCAL_STORAGE)) {
 
-        for (File file : fileList) {
-            filePaths.add(file.getAbsolutePath());
+            logger.info("reading local storage");
+            getFiles(directoryPath);
+
+            for (File file : fileList) {
+                filePaths.add(file.getAbsolutePath());
+            }
+
+        } else if (ConfigCBSI.getStorageMode()
+                .equals(StorageModes.HDFS_STORAGE)) {
+
+            logger.info("reading hdfs storage");
+            readFilesRecursively(directoryPath);
         }
 
         return filePaths;
     }
 
-    /*
     private static void readFilesRecursively(String directoryPath) {
 
         FileSystem hdfs = null;
@@ -63,16 +90,9 @@ public class DirectoryScanner {
                 readFilesRecursively(fileStatus[i].getPath().toString());
             } else {
                 // System.out.println(paths[i]);
-                fileList.add(paths[i].toString());
+                filePaths.add(paths[i].toString());
             }
 
         }
     }
-
-    public static List<String> getFileList(String directoryPath) {
-
-        readFilesRecursively(directoryPath);
-
-        return fileList;
-    }*/
 }

@@ -17,7 +17,7 @@ public class ConfigCBSI {
     private static final String PDFBOX_PATH = "pdfbox_path";
     private static final String FONTBOX_PATH = "fontbox_path";
 
-    private static final String STORAGE_PATH = "storage_mode";
+    private static final String STORAGE_MODE = "storage_mode";
     private static final String ONLINE_MODE = "online_mode";
 
     public static String getPdfboxPath() {
@@ -90,6 +90,19 @@ public class ConfigCBSI {
         try {
 
             return XMLConfig.readfromXml(RESULT_PDF_PATH);
+
+        } catch (XPathExpressionException | ParserConfigurationException
+                | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getStorageMode() {
+
+        try {
+
+            return XMLConfig.readfromXml(STORAGE_MODE);
 
         } catch (XPathExpressionException | ParserConfigurationException
                 | SAXException | IOException e) {
