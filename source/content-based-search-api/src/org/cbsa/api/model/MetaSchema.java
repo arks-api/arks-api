@@ -1,6 +1,6 @@
 package org.cbsa.api.model;
 
-public class MetaSchama {
+public class MetaSchema {
 
     public static final String TB_FILE_INFO = "file_info";
     public static final String CF_GENERAL = "general";
