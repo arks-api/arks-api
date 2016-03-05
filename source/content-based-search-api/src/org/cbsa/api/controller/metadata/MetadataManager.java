@@ -25,7 +25,7 @@ import org.cbsa.api.bgmapr.WordCount;
 import org.cbsa.api.model.FileMetadata;
 import org.cbsa.api.model.Keyword;
 import org.cbsa.api.model.KeywordDetails;
-import org.cbsa.api.model.MetaSchama;
+import org.cbsa.api.model.MetaSchema;
 
 @SuppressWarnings("deprecation")
 public class MetadataManager {
@@ -57,8 +57,8 @@ public class MetadataManager {
 
         try {
 
-            fileInfoTable = new HTable(config, MetaSchama.TB_FILE_INFO);
-            fileKeywordsTable = new HTable(config, MetaSchama.TB_FILE_KEYWORDS);
+            fileInfoTable = new HTable(config, MetaSchema.TB_FILE_INFO);
+            fileKeywordsTable = new HTable(config, MetaSchema.TB_FILE_KEYWORDS);
 
         } catch (IOException e) {
 
@@ -84,23 +84,23 @@ public class MetadataManager {
 
         Put putFileInfo = new Put(Bytes.toBytes(fileMetadata.getFileID()));
 
-        putFileInfo.add(Bytes.toBytes(MetaSchama.CF_GENERAL),
-                Bytes.toBytes(MetaSchama.CO_FILE_NAME),
+        putFileInfo.add(Bytes.toBytes(MetaSchema.CF_GENERAL),
+                Bytes.toBytes(MetaSchema.CO_FILE_NAME),
                 Bytes.toBytes(fileMetadata.getFileName()));
-        putFileInfo.add(Bytes.toBytes(MetaSchama.CF_GENERAL),
-                Bytes.toBytes(MetaSchama.CO_FILE_PATH),
+        putFileInfo.add(Bytes.toBytes(MetaSchema.CF_GENERAL),
+                Bytes.toBytes(MetaSchema.CO_FILE_PATH),
                 Bytes.toBytes(fileMetadata.getFilePath()));
-        putFileInfo.add(Bytes.toBytes(MetaSchama.CF_GENERAL),
-                Bytes.toBytes(MetaSchama.CO_FILE_SIZE),
+        putFileInfo.add(Bytes.toBytes(MetaSchema.CF_GENERAL),
+                Bytes.toBytes(MetaSchema.CO_FILE_SIZE),
                 Bytes.toBytes(fileMetadata.getFileSize()));
-        putFileInfo.add(Bytes.toBytes(MetaSchama.CF_GENERAL),
-                Bytes.toBytes(MetaSchama.CO_TOTAL_PAGES),
+        putFileInfo.add(Bytes.toBytes(MetaSchema.CF_GENERAL),
+                Bytes.toBytes(MetaSchema.CO_TOTAL_PAGES),
                 Bytes.toBytes(fileMetadata.getTotalPages()));
-        putFileInfo.add(Bytes.toBytes(MetaSchama.CF_DOMAIN),
-                Bytes.toBytes(MetaSchama.CO_SUB_DOMAIN),
+        putFileInfo.add(Bytes.toBytes(MetaSchema.CF_DOMAIN),
+                Bytes.toBytes(MetaSchema.CO_SUB_DOMAIN),
                 Bytes.toBytes(fileMetadata.getFileDomain()));
-        putFileInfo.add(Bytes.toBytes(MetaSchama.CF_FILE_ID),
-                Bytes.toBytes(MetaSchama.CO_ID),
+        putFileInfo.add(Bytes.toBytes(MetaSchema.CF_FILE_ID),
+                Bytes.toBytes(MetaSchema.CO_ID),
                 Bytes.toBytes(fileMetadata.getFileID()));
 
         List<Put> putKeywordsList = new ArrayList<Put>();
@@ -112,14 +112,14 @@ public class MetadataManager {
             Put putKeywords = new Put(Bytes.toBytes(fileMetadata.getFileID()
                     + "_" + String.valueOf(i)));
 
-            putKeywords.add(Bytes.toBytes(MetaSchama.CF_FILE_ID),
-                    Bytes.toBytes(MetaSchama.CO_ID),
+            putKeywords.add(Bytes.toBytes(MetaSchema.CF_FILE_ID),
+                    Bytes.toBytes(MetaSchema.CO_ID),
                     Bytes.toBytes(fileMetadata.getFileID()));
-            putKeywords.add(Bytes.toBytes(MetaSchama.CF_KEYWORDS),
-                    Bytes.toBytes(MetaSchama.CO_KEYWORD),
+            putKeywords.add(Bytes.toBytes(MetaSchema.CF_KEYWORDS),
+                    Bytes.toBytes(MetaSchema.CO_KEYWORD),
                     Bytes.toBytes(fileKeywords.get(i).getKeyword()));
-            putKeywords.add(Bytes.toBytes(MetaSchama.CF_KEYWORDS),
-                    Bytes.toBytes(MetaSchama.CO_FREQUENCY),
+            putKeywords.add(Bytes.toBytes(MetaSchema.CF_KEYWORDS),
+                    Bytes.toBytes(MetaSchema.CO_FREQUENCY),
                     Bytes.toBytes(fileKeywords.get(i).getFrequency()));
 
             putKeywordsList.add(putKeywords);
@@ -158,11 +158,11 @@ public class MetadataManager {
 
         scanFileInfo = new Scan();
 
-        scanFileInfo.addFamily(Bytes.toBytes(MetaSchama.CF_GENERAL));
-        scanFileInfo.addFamily(Bytes.toBytes(MetaSchama.CF_DOMAIN));
+        scanFileInfo.addFamily(Bytes.toBytes(MetaSchema.CF_GENERAL));
+        scanFileInfo.addFamily(Bytes.toBytes(MetaSchema.CF_DOMAIN));
 
         scanFileKeywords = new Scan();
-        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchama.CF_KEYWORDS));
+        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchema.CF_KEYWORDS));
 
         try {
 
@@ -217,8 +217,8 @@ public class MetadataManager {
         // retrieve keywords list
 
         scanFileKeywords = new Scan();
-        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchama.CF_FILE_ID));
-        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchama.CF_KEYWORDS));
+        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchema.CF_FILE_ID));
+        scanFileKeywords.addFamily(Bytes.toBytes(MetaSchema.CF_KEYWORDS));
 
         try {
 
@@ -338,8 +338,8 @@ public class MetadataManager {
             filePathResult = fileInfoTable.get(filePathGetter);
 
             String tempPath = Bytes.toString(filePathResult.getValue(
-                    Bytes.toBytes(MetaSchama.CF_GENERAL),
-                    Bytes.toBytes(MetaSchama.CO_FILE_PATH)));
+                    Bytes.toBytes(MetaSchema.CF_GENERAL),
+                    Bytes.toBytes(MetaSchema.CO_FILE_PATH)));
 
             documentPathList.add(tempPath);
         }

@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
-import org.cbsa.api.model.MetaSchama;
+import org.cbsa.api.model.MetaSchema;
 
 public class ResetDatabase {
 
@@ -33,11 +33,11 @@ public class ResetDatabase {
 
         try {
 
-            admin.disableTable(MetaSchama.TB_FILE_INFO);
-            admin.disableTable(MetaSchama.TB_FILE_KEYWORDS);
+            admin.disableTable(MetaSchema.TB_FILE_INFO);
+            admin.disableTable(MetaSchema.TB_FILE_KEYWORDS);
 
-            admin.deleteTable(MetaSchama.TB_FILE_INFO);
-            admin.deleteTable(MetaSchama.TB_FILE_KEYWORDS);
+            admin.deleteTable(MetaSchema.TB_FILE_INFO);
+            admin.deleteTable(MetaSchema.TB_FILE_KEYWORDS);
 
             logger.info("database reset successful");
 
