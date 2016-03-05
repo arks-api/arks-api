@@ -23,6 +23,8 @@ public class PageByPageSearch {
     private final Logger logger = Logger.getLogger(PageByPageSearch.class
             .getName());
 
+    private int falseCounter = 0;
+
     public PageByPageSearch() {
         logger.setLevel(Level.INFO);
     }
@@ -63,12 +65,16 @@ public class PageByPageSearch {
 
             if (hasKeywords) {
 
-                SearchResult result = new PageResult();
-                result.setFileContent(reader.getText(doc));
-                result.setFilePath(path);
-                result.setPageNumber(i);
-                list.add(result);
-                pageList.add(doc.getPage(i));
+                if (falseCounter > 1) {
+                    SearchResult result = new PageResult();
+                    result.setFileContent(reader.getText(doc));
+                    result.setFilePath(path);
+                    result.setPageNumber(i);
+                    list.add(result);
+                    pageList.add(doc.getPage(i));
+                }
+
+                falseCounter++;
             }
 
         }
