@@ -1,0 +1,23 @@
+\chapter{SOFTWARE IMPLEMENTATION}
+\section{Introduction}
+A software implementation method is a systematically structured approach to effectively integrate software based service or component into the workflow of an organizational structure or an individual end-user. A product software implementation method is a blueprint to get users and/or organizations running with a specific software product. The method is a set of rules and views to cope with the most common issues that occur when implementing a software product: business alignment from the organizational view and acceptance from the human view. The implementation of product software, as the final link in the deployment chain of software production, is in a financial perspective of a major issue. It is stated that the implementation of (product) software consumes up to 1/3 of the budget of a software purchase (more than hardware and software requirements together).We intend to build an application of neural network for text line recognition using Java language and Netbeans 6.0 as our tool. Our application will take image containing text as input and provide OCR generated output by pattern matching technique.The following are our project modules and we implemented the system step by step as per the modules.
+\section{ Modules}
+\begin{enumerate}
+\item Text region detection
+\item Text line normalization
+\item Features extraction
+\item Neural network training
+\item Text line scanning
+\item Hidden Markov Models decoding
+\end{enumerate}
+\section{The Algorithm strategy of project}
+\begin{enumerate}
+\item  Input the image file containing text.
+\item  Normalize the text line by line.
+\item  Extract the features from the text line.
+\item  Train the neural network using AutoMLP training for extracted features. 
+\item The complete text line using the window from left to right and generate time series signals for character positions.
+\item  Decode the time series signal by HMM decoder.
+\item The output of HMM decoder is the machine printed document.
+ \end{enumerate}
+

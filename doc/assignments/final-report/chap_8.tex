@@ -1,0 +1,126 @@
+\chapter{SOFTWARE TESTING}
+\section{Introduction}
+           Software Testing is the process of executing a program or system with the intent of finding errors. Or, it involves any activity aimed at evaluating an attribute or capability of a program or system and determining that it meets its required results. Software is not unlike other physical processes where inputs are received and outputs are produced. Where software differs is in the manner in which it fails. Most physical systems fail in a fixed (and reasonably small) set of ways. By contrast, software can fail in many bizarre ways. Detecting all of the different failure modes for software is generally infeasible. Software bugs will almost always exist in any software module with moderate size: not because programmers are careless or irresponsible, but because the complexity of software is generally intractable -- and humans have only limited ability to manage complexity. It is also true that for any complex systems, design defects can never be completely ruled out.
+\section{TESTING CASES}
+        The following are the different types of testing:
+Unit testing
+        Unit testing refers to tests that verify the functionality of a specific section of code, usually at the function level. In an object-oriented environment, this is usually at the class level, and the minimal unit tests include the constructors and destructors.
+       These types of tests are usually written by developers as they work on code (white-box style), to ensure that the specific function is working as expected. One function might have multiple tests, to catch corner cases or other branches in the code. Unit testing alone cannot verify the functionality of a piece of software, but rather is used to assure that the building blocks the software uses work independently of each other. Unit testing is also called component testing.
+White Box testing:
+         White-box testing is a method of testing software that tests internal structures or workings of an application, as opposed to its functionality (i.e. black-box testing). In white-box testing an internal perspective of the system, as well as programming skills, are required and used to design test cases. The tester chooses inputs to exercise paths through the code and determine the appropriate outputs. This is analogous to testing nodes in a circuit testing. Using white box testing method, software engineer can derive test case that:
+Guarantee that all independent paths within module have been exercised at least once.
+Exercise all the logical decisions on their true or false sides.
+Execute all loops on the boundaries and within their operational bounds.
+Exercise internal structure to insure their validity.
+While white-box testing can be applied at the unit, integration and system levels of the software testing process, it is usually done at the unit level. It can test paths within a unit, paths between units during integration, and between subsystems during a system level test. 
+Black Box testing:
+		Black-box testing is a method of software testing that tests the functionality of an application as opposed to its internal structures or workings (see white-box testing). Specific knowledge of the application's code/internal structure and programming knowledge in general is not required. Test cases are built around specifications and requirements, i.e., what the application is supposed to do. It uses external descriptions of the software, including specifications, requirements, and design to derive test cases. These tests can be functional or non-functional, though usually functional. The test designer selects valid and invalid inputs and determines the correct output. There is no knowledge of the test object's internal structure. Black box testing attempts to find error in following categories:
+Incorrect and missing function,Interface errors, Errors in data structures or External database accesses, Behavior or performance error ,Initialization  and termination.\\
+
+Integration testing:\\
+The purpose of integration testing is to verify functional, performance, and reliability requirements placed on major design items. These "design items", i.e. assemblages (or groups of units), are exercised through their interfaces using Black box testing, success and error cases being simulated via appropriate parameter and data inputs. Simulated usage of shared data areas and inter-process communication is tested and individual subsystems are exercised through their input interface.
+
+Top-Down approach:
+	A top-down approach (also known as step-wise design) is essentially the breaking down of a system to gain insight into its compositional sub-systems. In a top-down approach an overview of the system is formulated, specifying but not detailing any first-level subsystems. Each subsystem is then refined in yet greater detail, sometimes in many additional subsystem levels, until the entire specification is reduced to base elements. A top-down model is often specified with the assistance of "black boxes", these make it easier to manipulate. However, black boxes may fail to elucidate elementary mechanisms or be detailed enough to realistically validate the model.
+
+
+Bottom-up approach:
+         A bottom-up approach is the piecing together of systems to give rise to grander systems, thus making the original systems sub-systems of the emergent system. In a bottom-up approach the individual base elements of the system are first specified in great detail. These elements are then linked together to form larger subsystems, which then in turn are linked, sometimes in many levels, until a complete top-level system is formed. This strategy often resembles a "seed" model, whereby the beginnings are small but eventually grow in complexity and completeness. However, "organic strategies" may result in a tangle of elements and subsystems, developed in isolation and subject to local optimization as opposed to meeting a global purpose.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|} 
+\hline 
+Number & Test Condition & Expected result & Actual result\\
+\hline
+1 & Proper function in each module & Operations are working properly & Same as expected\\
+\hline
+2 & Each module working properly &  Modules are running successfully & Same as expected\\
+\hline	
+\end{tabular} 
+\caption{Result of Intergration Testing}
+
+\end{table}
+
+
+
+Regression testing 
+         Regression testing is any type of software testing that seeks to uncover new errors, or regressions, in existing functionality after changes have been made to the software, such as functional enhancements, patches or configuration changes.
+        The intent of regression testing is to assure that a change, such as a bug fix, did not introduce new bugs. "One of the main reasons for regression testing is that it's often extremely difficult for a programmer to figure out how a change in one part of the software will echo in other parts of the software.
+       Common methods of regression testing include rerunning previously run tests and checking whether program behavior has changed and whether previously fixed faults have re-emerged. Regression testing can be used to test a system efficiently by systematically selecting the appropriate minimum set of tests needed to adequately cover a particular change.
+
+
+\begin{table}[h]
+
+\centering
+\begin{tabular}{|l|c|c|c|} \hline 
+Number & Test condition & Expected results & Actual results\\
+\hline
+1 & Changed input  & System is working properly on changed input & Same as expected\\
+\hline
+2 & Properly specified input & Input is given properly & Same as expected\\
+\hline
+
+\end{tabular} 
+\caption{Result of Validation Testing}
+
+\end{table}
+
+
+ UI testing
+	The E-mail client needs to be user friendly. E-mail client bring mails to user’s mobile in a simple and pleasing UI. The mail client has a graphical user interface (GUI). The important features of the mail are being highlighted. It should be able to switch properly between different screens. The client has many other interfaces like buttons, Textboxes; scrollbars etc. which needs to comply with industry standards. The efficiency and functionality of these features need to be tested.
+
+ Functional Testing 
+	It's a type of GUI testing where functionality of an application is tested. Testing of all features and functions of system software, hardware, etc. to ensure requirements and specifications are met. Functionality testing of software is testing conducted on a complete, integrated system to evaluate the system's compliance with its specified requirements. Functionality testing falls within the scope of black box testing, and as such, should require no knowledge of the inner design of the code or logic. Also the basic functional requirements of the system should be fulfilled and tested.
+Stability Testing
+The mail client has to run on mobile phones for long time. it must have a scheduling functionality wherein they run in background on the user’s mobile device. When invoked the mail client come to the foreground and corresponds to the users request. Fulfill. The stability of mail client in such scenarios should be tested.
+Validation Testing
+Alpha –Beta Testing 
+         Instructions for use may be misinterpreted, strange combination of data may be regularly used; output that seemed clear to the tester may be unintelligible to a user in the field. When software is build for one customer, a series of acceptance tests are conducted to enable the customer validate all requirement.
+Acceptance test can range from an informal “test drive” to a planned and systematically executed series of tests. In fact, acceptance testing can be conducted over a period of weekly or months ,thereby uncovering cumulative errors that might degrades the system overtime. If software is developed as a product to be used by many customers, it is impractical to perform formal acceptance tests with each one.
+          The beta test is conducted in a controlled environment. The beta test is conducted at end –user sites. Unlike alpha testing, the developer is generally not present. Therefore, the beta test is a “live” application of the software is an environment that cannot be controlled by the developer. As a result of problem reported during beta tests, software engineers make modifications and then prepare for release of the software product to the entire customer base.
+
+
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|} \hline 
+Number & Test condition  & Expected results &	Actual results\\
+\hline
+1 & Validations like task, configuration & Gives error if any validation criteria violated &	Same as expected\\
+\hline
+\end{tabular} 
+\caption{Result of Validation Testing}
+\end{table}
+
+System testing 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|r|c|}
+\hline 
+Number & Test Condition & Expected results & Actual results\\
+\hline
+1 & Proper application, navigation and processing & Proper navigation, processing & Same as expected\\
+\hline
+\end{tabular} 
+\caption{System Testing}
+\end{table}
+
+	
+\section{Test Plan}
+               It is high level document which involves overall planning of the testing.
+It contains following things –
+\begin{itemize}
+\item Objective
+\item Schedule
+\item Features to be tested
+\item Features not to be tested
+\item Scope of testing
+\item Resource
+\item Roles And Responsibilities
+\item Test approaches
+\item Entry exit criteria
+\item Type of testing
+\end{itemize}

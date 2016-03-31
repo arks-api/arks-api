@@ -1,0 +1,48 @@
+
+\documentclass[openright,oneside]{iitbthesis}
+
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{fancyhdr}		% For special customization of headers and footers
+\usepackage{fancybox}
+\usepackage{footnote}
+\usepackage{textcomp}
+
+
+\begin{document}
+
+%=====================================================================
+% Include the prelude for Title page, abstract, table of contents, etc
+% You need to modify it to contain your details
+\include{initial_pages} % do not change
+\include{Chap_1} % names of the chapters as file names %
+\include{Chap_2}
+\include{Chap_3}
+\include{Chap_4}
+\include{Chap_5}
+\include{Chap_6}
+\include{Chap_7}
+\include{Chap_8}
+\include{Chap_9}
+\include{Chap_10}
+\include{Chap_11}
+
+
+
+\appendix
+{
+\include{Assignments1}
+\include{Assignments2}
+\include{Paper_Published}
+\include{awards}
+}
+
+\renewcommand{\bibname}{References}
+\bibliographystyle{IEEEtran}
+\include{Chap_12}
+\bibliography{BiB}
+
+\end{document}

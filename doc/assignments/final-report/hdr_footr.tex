@@ -1,0 +1,129 @@
+\documentclass[12pt,times,a4paper]{article}
+\usepackage[a4paper,vmargin={1in,1in},hmargin={1.25in,1in}]{geometry}	% Setup of page size,margins
+\usepackage{graphics}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{epsfig}
+\usepackage{subfigure}  
+\usepackage{fancyhdr}		% For special customization of headers and footers
+\usepackage{fancybox}		% For formatting of cover page5
+\usepackage{amsmath}    	% For  mathematical formulae
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{setspace}		% For adjusting line spacing 
+\usepackage{pdfpages}
+\usepackage[square, comma, sort&compress,numbers]{natbib} % For customizing citations
+\usepackage[pdftex]{hyperref}	% For having working URLs for references 
+\usepackage[intoc]{nomencl}
+\usepackage{multirow} 		  	% for row spannig in table environment
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\usepackage{footnote} 			% this package conflicts with xcolor.  So keep its order as is
+\makenomenclature
+\onehalfspacing
+
+\title{YOUR-PROJECT-TITLE-GOES-HERE}
+\begin{document}
+\pagenumbering{roman}
+\pagestyle{empty}
+
+
+
+\pagestyle{plain}           %For displaying roman page nos
+%------------------------------------------------------------------------------
+%  Acknowledgement starts here
+%------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+%  Acknowledgement ends here
+%------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------
+%  TOC starts here
+%------------------------------------------------------------------------------
+
+\newpage
+\tableofcontents
+
+
+%------------------------------------------------------------------------------
+%  List of Figures,tables starts here
+%------------------------------------------------------------------------------
+
+\newpage
+{\setlength{\baselineskip}{1.5\baselineskip}
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+}
+{\setlength{\baselineskip}{1.5\baselineskip}
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
+}
+
+
+%------------------------------------------------------------------------------
+%  List Of abbreviation starts here
+%------------------------------------------------------------------------------
+
+\newpage
+\nomenclature[LOA]{LOA}{List Of Abbreviations} 
+\nomenclature[LOA]{LOA}{List Of Abbreviations} 
+\nomenclature[LOA]{LOA}{List Of Abbreviations} 
+\nomenclature[LOA]{LOA}{List Of Abbreviations} 
+\nomenclature[LOA]{LOA}{List Of Abbreviations} 
+\renewcommand{\nomname}{List of Abbreviations}
+%\addcontentsline{toc}{section}{List of Abbreviations}
+\printnomenclature[0.75in]
+
+%------------------------------------------------------------------------------
+%  Abstract starts here
+%------------------------------------------------------------------------------
+\newpage
+\pagenumbering{empty}     
+% for centering the titles of sections
+\newcommand{\ssection}[1]{\section[#1]{\centering #1}}
+		\begin{center}				%centre align the text
+				\section*{Abstract}
+				%\addcontentsline{toc}{section}{Abstract}
+				\vspace{.15 in}       %leave space of 0.5 inches vertically
+		\end{center}
+\onehalfspace
+\begin{normalsize}
+\textit{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam risus, tempus non sagittis at, euismod et leo. Praesent nec nibh vitae enim eleifend volutpat porttitor vel arcu. Donec ac nunc eget metus consectetur bibendum. Sed sollicitudin, sem in suscipit facilisis, orci tortor aliquam purus, a sodales metus leo sed enim. Quisque scelerisque turpis ut ipsum tincidunt blandit. Nulla in leo ac dui semper commodo. Fusce facilisis suscipit dolor et pellentesque. Phasellus tristique vehicula nisi, nec ultricies quam dapibus quis. Aenean ornare, nulla sed aliquet iaculis, nibh nibh elementum justo, eu mattis risus est quis ante. Ut iaculis accumsan mauris luctus dapibus. Aenean fermentum fermentum urna, vitae gravida arcu ultricies a. Pellentesque nisi nisi, dapibus nec vulputate vel, rutrum sit amet urna.\\Donec iaculis commodo est, a commodo quam gravida quis. Cras ipsum lectus, dictum sed euismod id, mollis id ante. Donec odio diam, laoreet id molestie sed, molestie quis massa. Nunc eget augue diam. Cras mollis mattis pretium. Proin semper bibendum sem, non blandit urna pulvinar ac. Nullam auctor vestibulum dolor nec aliquet. Aenean ultrices suscipit risus quis tempor.\\Donec tortor sem, sagittis nec fringilla sit amet, laoreet non urna. Duis blandit venenatis nunc, id venenatis neque sodales cursus. Donec et turpis sit amet ipsum semper pulvinar rhoncus eget ipsum. Sed ultrices erat a diam aliquet mollis. Nullam eu libero vitae ante tincidunt interdum eu eu nunc. In hac habitasse platea dictumst. Nullam pretium vulputate arcu eu cursus. Aenean eleifend erat quis dolor laoreet eget porta quam sollicitudin. Integer rutrum dictum scelerisque. Aliquam ut orci quam, a vulputate leo. Ut scelerisque odio eget arcu ultricies porta. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque libero mi, rutrum porta blandit eu, feugiat quis diam. Vivamus et dolor magna. Vestibulum porta neque a nibh imperdiet in porttitor turpis tempus. Nullam eget nisi erat, vitae sollicitudin erat.\\}
+\end{normalsize}
+
+
+%------------------------------------------------------------------------------
+%  Abstract ends here
+%------------------------------------------------------------------------------
+\pagenumbering{arabic}     %For displaying arabic(1,2,3 ..) page nos
+\pagestyle{fancy}
+\fancyhead[RO]{\textit{\begin{small} YOUR-PROJECT TITLE-GOES-HERE\end{small}}}
+\fancyhead[LO]{\textit{\begin{small}Project Stage II\end{small}}}
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyfoot[RO]{\textit{\begin{small}Dept. of Comp. Engg.\end{small}}}
+\fancyfoot[LO]{\textit{\begin{small}DYPCOE, Akurdi, Pune 44.\end{small}}}
+%1. Introduction (Broad area to narrow down)
+%------------------------------------------------------------------------------
+%  Introduction starts here
+%------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+\newpage
+\addcontentsline{toc}{section}{References}
+\newpage
+				{\setlength{\baselineskip}{1.2\baselineskip}
+
+\label{Bibliography}
+
+\lhead{\emph{Bibliography}} % Change the page header to say "Bibliography"
+
+\bibliographystyle{plainnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+
+\bibliography{Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
+
+\end{document}
+

@@ -1,0 +1,14 @@
+*.aux
+*.lof
+*.log
+*.lot
+*.out
+*.pdf
+*.gz
+*.toc
+*.dvi
+*.bbl
+*.biblo
+*.cls
+*.blg
+*.bib
