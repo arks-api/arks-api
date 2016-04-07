@@ -18,7 +18,7 @@ public class ContentSearchTester {
 
         List<SearchResult> resultCardList;
         resultCardList = pageByPageSearch.findpages(
-                "/opt/dataset/MySQL Tutorials Point.pdf", searchKeywordList);
+                "/opt/dataset/MySQL Tutorials Point.pdf", searchKeywordList, 0);
 
         System.out.println("got list");
 
