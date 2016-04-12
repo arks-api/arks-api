@@ -128,6 +128,7 @@ export SQOOP_HOME=/usr/local/sqoop
 export PIG_HOME=/usr/local/pig
 
 PATH=$PATH:$HADOOP_HOME/bin
+PATH=$PATH:$HADOOP_HOME/sbin
 PATH=$PATH:$HBASE_HOME/bin
 PATH=$PATH:$HIVE_HOME/bin
 PATH=$PATH:$HCAT_HOME/bin
