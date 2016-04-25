@@ -325,13 +325,24 @@ Mem-Shared = Storage Space
 
 \section{Names of Conferences / Journals where papers can be published}
 \begin{itemize}
+\item IOSR - International Organization of Scientific Research
 \item ICCUBEA - International Conference on Computing, Communication, Control And Automation
 \end{itemize} 
 
 
 \section{Review of Conference/Journal Papers supporting Project idea}
 \label{sec:survey}
--- Pending : Review of Paper \\
+\begin{enumerate}
+\item \textbf{Paper Title } : Hadoop add-on API for Advanced Content Based Search \& Retrieval 
+\item \textbf{Name of the Conference/Journal where paper submitted } : IOSR - International Organization of Scientific Research
+\item \textbf{Paper accepted/rejected } : Accepted
+\item \textbf{Review comments by reviewer} : The independent review upon your research article titled "Hadoop add-on API for Advanced Content Based Search \& Retrieval" has been provided by the concerned referees. The referees have suggested Accepted your paper in IOSR Journals.
+	\begin{enumerate}
+		\item Quality of Manuscript is good.
+		\item Consolidated Decision: Accepted for publication 
+	\end{enumerate}
+	
+\end{enumerate}
 
 {\tabulinesep=2mm
    \begin{longtabu} { |p{3.5cm} | p{3.5cm} | p{4cm }| p{2.5cm }|}
@@ -917,7 +928,7 @@ This document specifies the design that is used to solve the problem of Product.
   \begin{center}
 	\begin{figure}[!htbp]
 		\centering
-		\fbox{\includegraphics[width=\textwidth]{architecture_design}}
+		\fbox{\includegraphics[width=\textwidth]{cbsa-layer-architecture}}
 	  \caption{Architecture diagram}
 	  \label{fig:arch-dig}
 	\end{figure}
@@ -1132,10 +1143,6 @@ One can store the data in HDFS either directly or through HBase. Data consumer r
  \caption{Meta-data Extraction Service Algorithm}
 \end{algorithm}
 
-\section{Verification and Validation for Acceptance}
-
--- pending
-
 % Chapter 9 :  Software Testing
 
 \chapter{Software Testing}
@@ -1229,7 +1236,30 @@ We are deploying our application in hadoop cluster.
 	\item Provide dataset\_path,  temp\_path, wc\_result\_path,  result\_pdf\_path, storage\_mode, online\_mode
 	\end{enumerate}
 \section{User help}
--- pending 
+\noindent\textbf{Q) How to install this API?}\\
+The first step is to configure this Hadoop API using etc/conf.xml for all the input files and the output to be generated and the various settings like hdfs file system and online/offline modes.And then the jar can be added either using the external jar referencing in the IDE like eclipse/netbeans or adding using mvnrepository.\\\\
+
+\noindent\textbf{Q) How to Use this Api as a developer?}\\
+The first step is to extract the metadata of the documents using the WordCount Class so that the metadata gets indexed in the HBase database and then using the seach and retrieval API for extracting the Contents of PDF.\\\\
+
+\noindent\textbf{Q) What background is needed to Use this Api?}\\
+->The Only background required for the user of this API is basic JAVA programming and basic depth in Hadoop programming.\\\\
+
+\noindent\textbf{Q) How to contribute to this project?}\\
+This project is an opensourced at https://github.com/hadoop-addon-for-advanced-context-based-search-and-retrieval.So the enthusiasts can clone the project and send their pull requests following certain open source contribution standards.Also the pull requests to be added have to be clearly documented and tested.\\\\
+
+\noindent\textbf{Q) What are the areas of contribution?}\\
+There are several areas for contribution like creating API for parsing files for processing PDF files in HDFS,extracting metadata from other file formats like ePub,mobi,doc,docx by creating custom recordreaders,internationalization for indexing other language files.\\\\
+
+\noindent\textbf{Q) How can I extend this API to other type of file formats?}\\
+->By extending the logic of RecordReader to other formats like epubs and docx as well as creating a mechanism to support language other than English this API van be further extended.\\\\
+
+\noindent\textbf{Q) What are the license issues for this API?}\\
+This API uses several Apache components like Commons,Hadoop,PdfBox and hence this API shall support Apache License for OpenSource.\\\\
+
+\noindent\textbf{Q) How to use this API's offline mode?}\\
+By changing the conf.xml to offline mode we can enable online dictionary to support meaningful searches which can be of use in fiction and non-fictional books.
+
 
 \chapter{Summary and Conclusion}
 \section{Summary}
@@ -1758,13 +1788,12 @@ File Meta data is also maintained in HBase distributed database. It has attribut
 \begin{enumerate}
 	\item Name : Kshama Jain  \hspace{90 mm}
 	%\includegraphics[width=60pt]{photo.jpg}
-	\item Date of Birth : 22nd Nov 1995
+	\item Date of Birth : 22nd March 1995
 	\item Gender : Female
 	\item Permanent Address : Mahavir Marg, Paras Medical, Lane No - 3, Kusumba, Dist. Pune  
 	\item E-Mail : jain.kshama9@gmail.com
 	\item Mobile/Contact No. : 9405823495
 	\item Placement Details : KPIT Technologies
-	\item Paper Published : 
 \end{enumerate}
 \pagebreak
 
@@ -1777,9 +1806,33 @@ File Meta data is also maintained in HBase distributed database. It has attribut
 	\item E-Mail : adityakamble49@gmail.com
 	\item Mobile/Contact No. : 9960255708
 	\item Placement Details : Xoriant Solutions Pvt. Ltd.
-	\item Paper Published : 
 \end{enumerate}
 \pagebreak
+
+\begin{enumerate}
+	\item Name : Rahul Rao  \hspace{90 mm}
+	%\includegraphics[width=60pt]{photo.jpg}
+	\item Date of Birth : 6th Jun 1994
+	\item Gender : Male
+	\item Permanent Address : Plot No 454/3, Sector 27/A Piyusha Apartments, Pradhikaran Nigdi Pune-411044
+	\item E-Mail : rahulraopune@gmail.com
+	\item Mobile/Contact No. : 7709008855
+	\item Placement Details : Mercedes Benz Research and Development, Bengaluru
+\end{enumerate}
+\pagebreak
+
+\begin{enumerate}
+	\item Name : Siddhesh Palande  \hspace{90 mm}
+	%\includegraphics[width=60pt]{photo.jpg}
+	\item Date of Birth : 1st August 1994
+	\item Gender : Male
+	\item Permanent Address : H.A. Colony, Pimpri, Pune 411018
+	\item E-Mail : sidpalande@gmail.com
+	\item Mobile/Contact No. : 9657327798
+	\item Placement Details : NTT Data
+\end{enumerate}
+\pagebreak
+
 
 \end{appendices}
 \end{document}
