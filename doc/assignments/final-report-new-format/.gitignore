@@ -4,6 +4,7 @@
 *.lot
 *.out
 *.pdf
+*.pdf
 *.gz
 *.toc
 *.dvi

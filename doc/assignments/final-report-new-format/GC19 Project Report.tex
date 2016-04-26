@@ -9,7 +9,7 @@
 
 \fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyfoot[CE]{Pimpri Chinchwad College of Engineering, Department of Computer Engineering 2015}
+  \fancyfoot[CE]{Pimpri Chinchwad College of Engineering, Department of Computer Engineering 2015-16}
   \fancyfoot[RE]{\thepage}
 }
 \pagestyle{fancy}
@@ -110,7 +110,7 @@ Rahul Rao  & B120334381 \\[4ex]
 \end{center}
 
 
-is a bonafide work carried out by Students under the supervision of Prof Shweta Koparde and it
+is a bonafide work carried out by Students under the supervision of Prof Shailesh Hule and it
 is submitted towards the partial fulfillment of the requirement of Bachelor of Engineering (Computer Engineering) Project.\\\\\\
 
 \bgroup
@@ -190,7 +190,7 @@ Is successfully completed by
 \newpage
 \setcounter{page}{0}
 \frontmatter
-\cfoot{PCCOE, Department of Computer Engineering 2015}
+\cfoot{PCCOE, Department of Computer Engineering 2015-16}
 \rfoot{\thepage}
 \pagenumbering{Roman}
 
@@ -204,6 +204,54 @@ Unstructured data like doc, pdf, ePub is lengthy to search and filter for desire
 We can use features of big data management system like Hadoop to organize unstructured data dynamically and return desired information. Hadoop provides features like Map Reduce, HDFS, HBase to filter data as per user input. Finally we can develop Hadoop Addon for content search and filtering on unstructured data. This addon will be able to provide APIs for different search results and able to download full file, part of files which are actually related to that topic.\\\\
 This Addon can be used by other industries and government authorities to use Hadoop for their data retrieval as per their requirement.\\\\
 After this addon, we are also planning to add more API features like content retrieval from scanned documents and image based documents.
+
+%Sponsorship Letter%
+{  \newpage {\bfseries \fontsize{14}{12} \selectfont \centerline{Sponsorship Letter} 
+\vspace*{2\baselineskip}} \setlength{\parindent}{11mm} }
+\begin{center}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth]{sponsorship-letter-1}
+	\end{figure}
+\end{center}
+
+%Sponsorship Letter 2%
+{  \newpage {\bfseries \fontsize{14}{12} \selectfont
+\vspace*{2\baselineskip}} \setlength{\parindent}{11mm} }
+\begin{center}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth]{sponsorship-letter-2}
+	\end{figure}
+\end{center}
+
+%Completion Letter%
+{  \newpage {\bfseries \fontsize{14}{12} \selectfont \centerline{Completion Letter} 
+\vspace*{2\baselineskip}} \setlength{\parindent}{11mm} }
+\begin{center}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth]{completion-letter-1}
+	\end{figure}
+\end{center}
+
+{  \newpage {\bfseries \fontsize{14}{12} \selectfont
+\vspace*{2\baselineskip}} \setlength{\parindent}{11mm} }
+\begin{center}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth]{completion-letter-2}
+	\end{figure}
+\end{center}
+
+{  \newpage {\bfseries \fontsize{14}{12} \selectfont \centerline{PCCOE (207).pdf} 
+\vspace*{2\baselineskip}} \setlength{\parindent}{11mm} }
+\begin{center}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth]{completion-letter-3}
+	\end{figure}
+\end{center}
 
 % Acknowledgement
 
@@ -941,7 +989,7 @@ This section includes a description of all data structures including internal, g
 \subsection{Internal software data structure}
 We are using HashMap as internal datastructure since MapReduce uses it. \\
 A HashMap is an object that maps keys to values. A map cannot contain duplicate keys: Each key can map to at most one value. It models the mathematical function abstraction. The Map interface includes methods for basic operations (such as put, get, remove, containsKey, containsValue, size, and empty), bulk operations (such as putAll and clear), and collection views (such as keySet, entrySet, and values). \\
-Creating Hashmap datastructure: Map<String, Integer> m = new HashMap<String, Integer>(); \\ \\
+Creating Hashmap datastructure: Map$<$String, Integer$>$ m = new HashMap$<$String, Integer$>$(); \\ \\
      
 The second argument is a conditional expression that has the effect of setting the frequency to one if the word has never been seen before or one more than its current value if the word has already been seen. Try running this program with the command:
 java Freq if it is to be it is up to me to delegate
@@ -1060,7 +1108,7 @@ A software implementation method is a systematically structured approach to effe
  The Apache Hadoop software library is a framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models. It is designed to scale up from single servers to thousands of machines, each offering local computation and storage. Rather than rely on hardware to deliver high-availability, the library itself is designed to detect and handle failures at the application layer, so delivering a highly-available service on top of a cluster of computers, each of which may be prone to failures.
 
 \subsection{Apache HBase}
- \begin{figure}[h]
+ \begin{figure}[H]
  	\begin{center}
  		\fbox{\includegraphics[width=100pt]{hbase-logo}}
  	\end{center}
@@ -1247,7 +1295,7 @@ The first step is to configure this Hadoop API using etc/conf.xml for all the in
 The first step is to extract the metadata of the documents using the WordCount Class so that the metadata gets indexed in the HBase database and then using the seach and retrieval API for extracting the Contents of PDF.\\\\
 
 \noindent\textbf{Q) What background is needed to Use this Api?}\\
-->The Only background required for the user of this API is basic JAVA programming and basic depth in Hadoop programming.\\\\
+The Only background required for the user of this API is basic JAVA programming and basic depth in Hadoop programming.\\\\
 
 \noindent\textbf{Q) How to contribute to this project?}\\
 This project is an opensourced at https://github.com/hadoop-addon-for-advanced-context-based-search-and-retrieval.So the enthusiasts can clone the project and send their pull requests following certain open source contribution standards.Also the pull requests to be added have to be clearly documented and tested.\\\\
@@ -1256,7 +1304,7 @@ This project is an opensourced at https://github.com/hadoop-addon-for-advanced-c
 There are several areas for contribution like creating API for parsing files for processing PDF files in HDFS,extracting metadata from other file formats like ePub,mobi,doc,docx by creating custom recordreaders,internationalization for indexing other language files.\\\\
 
 \noindent\textbf{Q) How can I extend this API to other type of file formats?}\\
-->By extending the logic of RecordReader to other formats like epubs and docx as well as creating a mechanism to support language other than English this API van be further extended.\\\\
+By extending the logic of RecordReader to other formats like epubs and docx as well as creating a mechanism to support language other than English this API van be further extended.\\\\
 
 \noindent\textbf{Q) What are the license issues for this API?}\\
 This API uses several Apache components like Commons,Hadoop,PdfBox and hence this API shall support Apache License for OpenSource.\\\\
@@ -1547,9 +1595,7 @@ Major Tasks in the Project stages are:
 
 \begin{enumerate}
 \item \textbf{Paper Title } : Content Based Search Add-on API Implemented for Hadoop Ecosystem
-\item \textbf{Name of the Conference/Journal where paper submitted } : -- pending
-\item \textbf{Paper accepted/rejected } : -- pending
-\item \textbf{Review comments by reviewer} : -- pending
+\item \textbf{Name of the Conference/Journal where paper submitted } : ICCUBEA
 	
 \end{enumerate}
 
@@ -1794,7 +1840,7 @@ File Meta data is also maintained in HBase distributed database. It has attribut
 	\includegraphics[width=60pt]{kshama-jain.jpg}
 	\item Date of Birth : 22nd March 1995
 	\item Gender : Female
-	\item Permanent Address : Mahavir Marg, Paras Medical, Lane No - 3, Kusumba, Dist. Pune  
+	\item Permanent Address : Mahavir Marg, Paras Medical, Lane No - 3, Kusumba, Dhule.  
 	\item E-Mail : jain.kshama9@gmail.com
 	\item Mobile/Contact No. : 9405823495
 	\item Placement Details : KPIT Technologies
@@ -1821,7 +1867,7 @@ File Meta data is also maintained in HBase distributed database. It has attribut
 	\item Permanent Address : Plot No 454/3, Sector 27/A Piyusha Apartments, Pradhikaran Nigdi Pune-411044
 	\item E-Mail : rahulraopune@gmail.com
 	\item Mobile/Contact No. : 7709008855
-	\item Placement Details : Mercedes Benz Research and Development, Bengaluru
+	\item Placement Details : Mercedes Benz Research and Development India, Bengaluru
 \end{enumerate}
 \pagebreak
 
