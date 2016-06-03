@@ -18,8 +18,7 @@
 
 Unstructured data like doc, pdf, ePub is lengthy to search and filter for desired information. We need to go through every file manually for finding information. It is very time consuming and frustrating. It doesnt need to be done this way if we can use high computing power to achieve much faster content retrieval.
 
-We can use features of big data management system like Hadoop to organize unstructured data dynamically and return desired information. Hadoop provides fea-
-tures like Map Reduce, HDFS, HBase to filter data as per user input. Finally we can
+We can use features of big data management system like Hadoop to organize unstructured data dynamically and return desired information. Hadoop provides features like Map Reduce, HDFS, HBase to filter data as per user input. Finally we can
 develop Hadoop Addon for content search and filtering on unstructured data. This
 addon will be able to provide APIs for different search results and able to download full file, part of files which are actually related to that topic.
 This Addon can be used by other industries and government authorities to use Hadoop
