@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,77 +19,88 @@ import org.cbsa.api.conf.ConfigCBSI;
 import org.cbsa.api.model.PageResult;
 import org.cbsa.api.model.SearchResult;
 
+import sun.util.locale.StringTokenIterator;
+
 public class PageByPageSearch {
 
-    private final Logger logger = Logger.getLogger(PageByPageSearch.class
-            .getName());
+	private final Logger logger = Logger.getLogger(PageByPageSearch.class
+			.getName());
 
-    private int falseCounter = 0;
+	private int falseCounter = 0;
+	private boolean validResult = false;
 
-    public PageByPageSearch() {
-        logger.setLevel(Level.INFO);
-    }
+	public PageByPageSearch() {
+		logger.setLevel(Level.INFO);
+	}
 
-    public List<SearchResult> findpages(String path,
-            List<String> searchKeywordList, int fileCounter) throws IOException {
+	public List<SearchResult> findpages(String path,
+			List<String> searchKeywordList, int fileCounter) throws IOException {
 
-        int i; // page no.
-        boolean hasKeywords = false;
+		int i; // page no.
+		boolean hasKeywords = false;
+		boolean hasSingleKeyword = false;
 
-        PDDocument finalDocument = new PDDocument();
-        List<PDPage> pageList = new ArrayList<PDPage>();
+		PDDocument finalDocument = new PDDocument();
+		List<PDPage> pageList = new ArrayList<PDPage>();
 
-        File file = new File(path);
-        PDFParser parser = new PDFParser(new RandomAccessBuffer(
-                new FileInputStream(file)));
-        parser.parse();
+		File file = new File(path);
+		PDFParser parser = new PDFParser(new RandomAccessBuffer(
+				new FileInputStream(file)));
+		parser.parse();
 
-        COSDocument cosDoc = parser.getDocument();
-        PDFTextStripper reader = new PDFTextStripper();
-        PDDocument doc = new PDDocument(cosDoc);
+		COSDocument cosDoc = parser.getDocument();
+		PDFTextStripper reader = new PDFTextStripper();
+		PDDocument doc = new PDDocument(cosDoc);
 
-        List<SearchResult> list = new ArrayList<SearchResult>();
+		List<SearchResult> list = new ArrayList<SearchResult>();
 
-        for (i = 0; i <= doc.getNumberOfPages(); i++) {
-            reader.setStartPage(i);
-            reader.setEndPage(i);
-            hasKeywords = true;
+		for (i = 0; i <= doc.getNumberOfPages() - 1; i++) {
+			reader.setStartPage(i);
+			reader.setEndPage(i);
+			hasKeywords = true;
+			hasSingleKeyword = false;
 
-            for (String keyword : searchKeywordList) {
+			for (String keyword : searchKeywordList) {
 
-                if (!reader.getText(doc).toLowerCase()
-                        .contains(keyword.toLowerCase())) {
-                    hasKeywords = false;
-                    break;
-                }
-            }
+				if (!reader.getText(doc).toLowerCase()
+						.contains(keyword.toLowerCase())) {
+					hasKeywords = false;
+					break;
+				}
 
-            if (hasKeywords) {
+			}
 
-                if (falseCounter > 1) {
-                    SearchResult result = new PageResult();
-                    result.setFileContent(reader.getText(doc));
-                    result.setFilePath(path);
-                    result.setPageNumber(i);
-                    list.add(result);
-                    pageList.add(doc.getPage(i));
-                }
+			if (hasKeywords) {
 
-                falseCounter++;
-            }
+				/* if (falseCounter > 1) { */
+				SearchResult result = new PageResult();
+				result.setFileContent(reader.getText(doc));
+				result.setFilePath(path);
+				result.setPageNumber(i);
+				list.add(result);
+				pageList.add(doc.getPage(i));
 
-        }
+				/* } */
 
-        for (PDPage page : pageList) {
-            finalDocument.addPage(page);
-        }
+				falseCounter++;
+			}
 
-        finalDocument
-                .save(ConfigCBSI.getResultPdfPath() + fileCounter + ".pdf");
-        finalDocument.close();
-        logger.info("Result Saved");
+		}
 
-        return list;
+		for (PDPage page : pageList) {
+			finalDocument.addPage(page);
+			validResult = true;
+		}
 
-    }
+		if (validResult) {
+			finalDocument.save(ConfigCBSI.getResultPdfPath() + fileCounter
+					+ ".pdf");
+			finalDocument.close();
+			logger.info("Result Saved");
+			validResult = false;
+		}
+
+		return list;
+
+	}
 }
