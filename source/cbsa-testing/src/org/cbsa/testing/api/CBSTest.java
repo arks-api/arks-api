@@ -11,7 +11,7 @@ public class CBSTest {
 		ContentBasedSearch contentBasedSearch = new ContentBasedSearch();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter Query : ");
-		String query = scanner.next();
+		String query = scanner.nextLine();
 		contentBasedSearch.searchForPages(query);
 	}
 }
